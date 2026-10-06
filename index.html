@@ -94,7 +94,7 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37]/20 border border-[#D4AF37] text-[#FFD700] text-xs font-bold px-3 py-1 rounded-full mb-3 inline-block">خدمة المواعيد الإلكترونية المباشرة</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-[#FFD700] mb-3 leading-tight">احجز موعدك مسبقاً وسجل حضورك بفرع سمالوط</h2>
-                    <p class="text-slate-300 text-xs sm:text-base leading-relaxed">سجل بياناتك والموعد المرغوب، وسيقوم الصراف بتحديد الشباك وإرسال التفتيش والتأكيد فوراً على الواتساب.</p>
+                    <p class="text-slate-300 text-xs sm:text-base leading-relaxed">سجل بياناتك والموعد المرغوب، وسيقوم الصراف بتحديد الشباك وإرسال التأكيد فوراً على الواتساب.</p>
                 </div>
             </div>
 
@@ -164,7 +164,7 @@
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
                     <h2 class="text-xl font-black text-[#0B192C]">أسعار الصرف اليومية الرسمية</h2>
                     <button onclick="fetchLiveRates()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-300">
-                        <i class="fa-solid fa-arrows-rotate text-emerald-600"></i> تحديث
+                        <i class="fa-solid fa-arrows-rotate text-emerald-600"></i> تحديث الأسعار
                     </button>
                 </div>
 
@@ -310,13 +310,14 @@
         let isAuthenticated = false;
         let queueData = {};
 
+        // أسعار العملات المحدثة بالجنيه المصري (EGP)
         let currenciesData = [
-            { code: 'USD', name: 'دولار أمريكي', buy: 52.38, sell: 52.48 },
-            { code: 'EUR', name: 'يورو أوروبي', buy: 58.46, sell: 59.09 },
-            { code: 'SAR', name: 'ريال سعودي', buy: 13.92, sell: 13.95 },
-            { code: 'AED', name: 'درهم إماراتي', buy: 14.25, sell: 14.29 },
-            { code: 'GBP', name: 'جنيه إسترليني', buy: 69.21, sell: 69.42 },
-            { code: 'KWD', name: 'دينار كويتي', buy: 169.81, sell: 170.31 }
+            { code: 'USD', name: 'دولار أمريكي', buy: 48.50, sell: 48.60 },
+            { code: 'EUR', name: 'يورو أوروبي', buy: 52.80, sell: 53.05 },
+            { code: 'SAR', name: 'ريال سعودي', buy: 12.92, sell: 12.96 },
+            { code: 'AED', name: 'درهم إماراتي', buy: 13.20, sell: 13.23 },
+            { code: 'GBP', name: 'جنيه إسترليني', buy: 63.30, sell: 63.65 },
+            { code: 'KWD', name: 'دينار كويتي', buy: 158.20, sell: 158.85 }
         ];
 
         let calcType = 'buy';
@@ -372,7 +373,7 @@
                         if (c.code === 'USD') { c.buy = usdEgp; c.sell = usdEgp + 0.10; }
                         else if (data.rates[c.code]) {
                             const rateToEgp = usdEgp / data.rates[c.code];
-                            c.buy = rateToEgp; c.sell = rateToEgp * 1.005;
+                            c.buy = rateToEgp; c.sell = rateToEgp * 1.004;
                         }
                     });
                     renderRatesTable();
