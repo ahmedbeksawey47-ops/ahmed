@@ -3,516 +3,621 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المصرية للصرافة - فرع سمالوط VIP</title>
-    <!-- Tailwind CSS -->
+    <title>الشركة المصرية للصرافة - فرع سمالوط</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
+    <!-- Google Fonts Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: {
-                            800: '#0b192c',
-                            900: '#070f1e',
-                            950: '#030712'
-                        },
-                        gold: {
-                            400: '#fbbf24',
-                            500: '#d97706',
-                            600: '#b45309'
-                        }
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #070f1e; color: #f3f4f6; }
-        .gold-gradient { background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%); }
-        .navy-card { background: rgba(11, 25, 44, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(245, 158, 11, 0.2); }
-        .gold-border { border-color: rgba(245, 158, 11, 0.4); }
-        .gold-text-gradient {
-            background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F8FAFC;
+        }
+        .nav-tab.active {
+            background-color: #0B192C;
+            color: #FFD700;
+            border-bottom: 3px solid #D4AF37;
+        }
+        .nav-tab {
+            color: #475569;
+            background-color: #FFFFFF;
+            transition: all 0.3s ease;
+        }
+        .nav-tab:hover:not(.active) {
+            background-color: #F1F5F9;
+            color: #0B192C;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-white">
+<body class="text-slate-800 antialiased selection:bg-[#D4AF37] selection:text-[#0B192C] pb-12">
 
-    <header class="sticky top-0 z-50 bg-navy-900/90 backdrop-blur-md border-b border-gold-500/30 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-3 space-x-reverse">
-                <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center shadow-md">
-                    <i class="fa-solid font-bold fa-building-columns text-navy-900 text-xl"></i>
+    <!-- Top Working Hours Banner -->
+    <div class="bg-[#1E3E62] text-amber-200 text-xs py-2.5 px-4 shadow-inner border-b border-amber-500/20">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-center sm:text-right">
+            <div class="flex items-center gap-2 font-semibold">
+                <i class="fa-solid fa-clock text-[#FFD700]"></i>
+                <span>مواعيد العمل: السبت إلى الخميس (8:00 ص - 9:00 م) | الجمعة (بعد صلاة الجمعة - 9:00 م)</span>
+            </div>
+            <div class="flex items-center gap-2 font-bold text-slate-200 text-[11px]">
+                <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                <span>الشركة المصرية للصرافة - أمان وثقة وسرعة في التنفيذ</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header class="bg-[#0B192C] text-white shadow-xl border-b-4 border-[#D4AF37] sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row items-center justify-between gap-4">
+            <!-- Logo & Branch Info -->
+            <div class="flex items-center gap-3.5 text-center md:text-right">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-tr from-[#D4AF37] via-[#FFD700] to-[#AA771C] rounded-2xl flex items-center justify-center text-[#0B192C] font-black text-2xl shadow-lg border border-amber-200">
+                    <i class="fa-solid fa-building-columns"></i>
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-lg sm:text-xl text-white tracking-wide">الشركة المصرية للصرافة</h1>
-                    <p class="text-xs text-gold-400 font-semibold"><i class="fa-solid fa-location-dot ml-1"></i>فرع سمالوط - خدمة VIP</p>
+                    <div class="flex items-center justify-center md:justify-start gap-2">
+                        <h1 class="text-lg sm:text-2xl font-black text-[#FFD700] tracking-tight">الشركة المصرية للصرافة</h1>
+                        <span class="bg-[#D4AF37]/20 border border-[#D4AF37] text-[#FFD700] text-[10px] font-bold px-2.5 py-0.5 rounded-full hidden sm:inline-block">فرع سمالوط</span>
+                    </div>
+                    <p class="text-xs text-slate-300 flex items-center justify-center md:justify-start gap-1.5 mt-0.5 font-semibold">
+                        <i class="fa-solid fa-location-dot text-[#D4AF37]"></i> شارع الجمهورية - أمام مسجد عبدالجواد سالم - سمالوط
+                    </p>
                 </div>
             </div>
-            
-            <nav class="flex items-center space-x-2 space-x-reverse">
-                <button onclick="switchTab('client')" id="btn-tab-client" class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 gold-gradient text-navy-950 shadow-md">
-                    <i class="fa-solid fa-user-check ml-1"></i> حجز عميل
-                </button>
-                <button onclick="switchTab('teller')" id="btn-tab-teller" class="px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 bg-navy-800 text-gray-300 hover:text-white border border-gray-700">
-                    <i class="fa-solid fa-user-shield ml-1"></i> لوحة الصراف
-                </button>
-            </nav>
+
+            <!-- Contact Buttons -->
+            <div class="flex flex-wrap items-center justify-center gap-2 text-xs">
+                <a href="tel:0863446509" class="bg-slate-800 hover:bg-[#D4AF37] hover:text-[#0B192C] border border-slate-700 px-3 py-2 rounded-xl transition-all font-bold flex items-center gap-1.5 text-slate-200">
+                    <i class="fa-solid fa-phone text-[#D4AF37]"></i> 086-3446509
+                </a>
+                <a href="tel:0863446519" class="bg-slate-800 hover:bg-[#D4AF37] hover:text-[#0B192C] border border-slate-700 px-3 py-2 rounded-xl transition-all font-bold flex items-center gap-1.5 text-slate-200">
+                    <i class="fa-solid fa-phone text-[#D4AF37]"></i> 086-3446519
+                </a>
+                <a href="https://maps.google.com/?q=Samalut+Minya+Egypt" target="_blank" class="bg-[#D4AF37] hover:bg-[#FFD700] text-[#0B192C] px-3 py-2 rounded-xl transition-all font-black flex items-center gap-1.5 shadow-md">
+                    <i class="fa-solid fa-map-location-dot"></i> موقع الفرع GPS
+                </a>
+            </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
+    <!-- Navigation Tabs -->
+    <nav class="max-w-7xl mx-auto px-4 mt-6">
+        <div class="flex border-b border-slate-200 overflow-x-auto gap-2 pb-1">
+            <button onclick="switchTab('booking')" id="btn-booking" class="nav-tab active px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
+                <i class="fa-solid fa-calendar-check text-emerald-600"></i> حجز موعد مسبق
+            </button>
+            <button onclick="switchTab('rates')" id="btn-rates" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
+                <i class="fa-solid fa-money-bill-transfer text-amber-500"></i> أسعار العملات والحاسبة
+            </button>
+            <button onclick="switchTab('about')" id="btn-about" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
+                <i class="fa-solid fa-circle-info text-indigo-600"></i> عن الفرع والمعرض
+            </button>
+            <button onclick="switchTab('teller')" id="btn-teller" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
+                <i class="fa-solid fa-user-shield text-blue-600"></i> لوحة الصراف
+            </button>
+        </div>
+    </nav>
 
-        <!-- CLIENT TAB CONTENT -->
-        <div id="tab-client" class="space-y-8">
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 mt-6">
 
-            <!-- Rates & Calculator Banner -->
-            <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <!-- Live Exchange Rates Table -->
-                <div class="lg:col-span-2 navy-card rounded-2xl p-5 shadow-xl">
-                    <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-800">
-                        <h2 class="text-lg font-bold text-white flex items-center">
-                            <i class="fa-solid fa-chart-line text-gold-400 ml-2"></i> أسعار العملات المباشرة بالفرع
-                        </h2>
-                        <span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full flex items-center">
-                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse ml-1.5"></span> محدّث الآن
-                        </span>
-                    </div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-right text-sm">
-                            <thead>
-                                <tr class="text-xs text-gray-400 border-b border-gray-800">
-                                    <th class="pb-3 font-semibold">العملة</th>
-                                    <th class="pb-3 font-semibold">الرمز</th>
-                                    <th class="pb-3 font-semibold text-emerald-400">شراء (من العميل)</th>
-                                    <th class="pb-3 font-semibold text-gold-400">بيع (للعميل)</th>
-                                </tr>
-                            </thead>
-                            <tbody id="rates-body" class="divide-y divide-gray-800/50">
-                                <!-- Dynamic Rates Loaded Here -->
-                            </tbody>
-                        </table>
-                    </div>
+        <!-- TAB 1: BOOKING FORM -->
+        <section id="tab-booking" class="space-y-8 animate-fadeIn">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden bg-gradient-to-r from-[#0B192C] via-[#1E3E62] to-[#0B192C] rounded-3xl p-6 sm:p-10 text-white shadow-2xl border-2 border-[#D4AF37]">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="bg-[#D4AF37]/20 border border-[#D4AF37] text-[#FFD700] text-xs font-bold px-3 py-1 rounded-full mb-3 inline-block">خدمة المواعيد الإلكترونية السريعة</span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-[#FFD700] mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار بفرع سمالوط</h2>
+                    <p class="text-slate-300 text-xs sm:text-base leading-relaxed mb-4">سجل بياناتك والموعد المناسب لك، وسيقوم الصراف بمراجعة طلبك وتحديد الشباك المناسب وإرسال تأكيد الحجز وموقع الفرع على الواتساب فوراً.</p>
                 </div>
+            </div>
 
-                <!-- Currency Converter Calculator -->
-                <div class="navy-card rounded-2xl p-5 shadow-xl flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-lg font-bold text-white mb-4 pb-2 border-b border-gray-800 flex items-center">
-                            <i class="fa-solid fa-calculator text-gold-400 ml-2"></i> حاسبة التحويل السريعة
-                        </h2>
-                        
-                        <div class="space-y-4">
-                            <div>
-                                <label class="block text-xs text-gray-400 mb-1">المبلغ المطلوب تحويله</label>
-                                <input type="number" id="calc-amount" value="1000" oninput="calculateExchange()" class="w-full bg-navy-950 border border-gray-700 rounded-xl p-2.5 text-white focus:border-gold-500 outline-none transition">
-                            </div>
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Booking Form Card -->
+                <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl">
+                    <h3 class="text-xl font-black text-[#0B192C] pb-3 border-b border-slate-100 mb-6 flex items-center gap-2">
+                        <i class="fa-solid fa-file-signature text-[#D4AF37]"></i> تسجيل حجز موعد جديد
+                    </h3>
 
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-xs text-gray-400 mb-1">العملة</label>
-                                    <select id="calc-currency" onchange="calculateExchange()" class="w-full bg-navy-950 border border-gray-700 rounded-xl p-2.5 text-white focus:border-gold-500 outline-none transition">
-                                        <option value="USD">دولار أمريكي (USD)</option>
-                                        <option value="SAR">ريال سعودي (SAR)</option>
-                                        <option value="EUR">يورو أوروبي (EUR)</option>
-                                        <option value="AED">درهم إماراتي (AED)</option>
-                                        <option value="GBP">جنيه إسترليني (GBP)</option>
-                                        <option value="KWD">دينار كويتي (KWD)</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs text-gray-400 mb-1">نوع العملية</label>
-                                    <select id="calc-type" onchange="calculateExchange()" class="w-full bg-navy-950 border border-gray-700 rounded-xl p-2.5 text-white focus:border-gold-500 outline-none transition">
-                                        <option value="buy">شراء منك (أنت تبيع)</option>
-                                        <option value="sell">بيع لك (أنت تشتري)</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-6 p-4 rounded-xl bg-navy-950/80 border border-gold-500/30 text-center">
-                        <p class="text-xs text-gray-400 mb-1">المبلغ الإجمالي المكتسب / المطلوب:</p>
-                        <p class="text-2xl font-black gold-text-gradient" id="calc-result">0.00 ج.م</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Booking Section -->
-            <section class="max-w-3xl mx-auto">
-                <div class="navy-card rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden border border-gold-500/40">
-                    <div class="absolute -top-12 -left-12 w-32 h-32 bg-gold-500/10 rounded-full blur-2xl"></div>
-
-                    <div class="text-center mb-6">
-                        <span class="bg-gold-500/10 text-gold-400 border border-gold-500/30 text-xs px-3 py-1 rounded-full font-bold">خدمة حجز المواعيد المسبقة</span>
-                        <h2 class="text-2xl font-extrabold text-white mt-2">احجز دورك مسبقاً بفرع سمالوط</h2>
-                        <p class="text-xs text-gray-400 mt-1">تجنب الانتظار، وسجل موعدك مباشرة لدى الصراف للتأكيد عبر WhatsApp أو SMS</p>
-                    </div>
-
-                    <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                    <form onsubmit="handleBookingSubmit(event)" class="space-y-5">
                         <div>
-                            <label class="block text-xs font-bold text-gray-300 mb-1">اسم العميل بالكامل <span class="text-red-400">*</span></label>
-                            <input type="text" id="client-name" required placeholder="أدخل اسمك كما بالبطاقة" class="w-full bg-navy-950 border border-gray-700 rounded-xl p-3 text-white focus:border-gold-500 outline-none transition">
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم بالكامل (طبقاً للبطاقة) <span class="text-rose-500">*</span></label>
+                            <input type="text" id="book-name" required placeholder="مثال: أحمد محمود علي" class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-slate-900 outline-none font-bold text-xs sm:text-sm focus:border-[#0B192C] focus:bg-white transition-all" />
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-300 mb-1">رقم الهاتف <span class="text-red-400">*</span></label>
-                            <input type="tel" id="client-phone" required placeholder="01xxxxxxxxx" class="w-full bg-navy-950 border border-gray-700 rounded-xl p-3 text-white focus:border-gold-500 outline-none transition">
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">رقم الهاتف / الواتساب <span class="text-rose-500">*</span></label>
+                            <input type="tel" id="book-phone" required placeholder="01012345678" dir="ltr" class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-right text-slate-900 outline-none font-bold text-xs sm:text-sm focus:border-[#0B192C] focus:bg-white transition-all" />
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label class="block text-xs font-bold text-gray-300 mb-1">تاريخ الحجز <span class="text-red-400">*</span></label>
-                                <input type="date" id="booking-date" required class="w-full bg-navy-950 border border-gray-700 rounded-xl p-3 text-white focus:border-gold-500 outline-none transition">
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">التاريخ المطلوب <span class="text-rose-500">*</span></label>
+                                <input type="date" id="book-date" required class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-slate-900 font-bold text-xs sm:text-sm focus:border-[#0B192C] focus:bg-white transition-all" />
                             </div>
+
                             <div>
-                                <label class="block text-xs font-bold text-gray-300 mb-1">الوقت المرغوب <span class="text-red-400">*</span></label>
-                                <input type="time" id="booking-time" required class="w-full bg-navy-950 border border-gray-700 rounded-xl p-3 text-white focus:border-gold-500 outline-none transition">
+                                <label class="block text-xs font-bold text-slate-700 mb-1.5">الوقت المرغوب للحضور <span class="text-rose-500">*</span></label>
+                                <select id="book-time" required class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-slate-900 font-bold text-xs sm:text-sm focus:border-[#0B192C] focus:bg-white transition-all">
+                                    <option value="08:30 صباحاً">08:30 صباحاً</option>
+                                    <option value="10:00 صباحاً">10:00 صباحاً</option>
+                                    <option value="11:30 صباحاً">11:30 صباحاً</option>
+                                    <option value="01:00 ظهراً">01:00 ظهراً</option>
+                                    <option value="03:00 مساءً">03:00 مساءً</option>
+                                    <option value="05:00 مساءً">05:00 مساءً</option>
+                                    <option value="07:00 مساءً">07:00 مساءً</option>
+                                </select>
                             </div>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-300 mb-1">نوع الخدمة</label>
-                            <input type="text" readonly value="حجز مسبق للفرع (VIP)" class="w-full bg-navy-900 border border-gray-800 text-gold-400 font-bold rounded-xl p-3 cursor-not-allowed">
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">نوع الخدمة المطلوب حجزها</label>
+                            <input type="text" value="حجز مسبق" readonly class="w-full bg-amber-50 border border-amber-300 p-3.5 rounded-xl text-[#0B192C] font-black text-xs sm:text-sm cursor-not-allowed" />
                         </div>
 
-                        <!-- Action Buttons -->
-                        <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <button type="button" onclick="sendBookingVia('whatsapp')" class="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl shadow-lg flex items-center justify-center space-x-2 space-x-reverse transition">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                                <span>إرسال عبر WhatsApp</span>
-                            </button>
-
-                            <button type="button" onclick="sendBookingVia('sms')" class="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg flex items-center justify-center space-x-2 space-x-reverse transition">
-                                <i class="fa-solid fa-comment-sms text-lg"></i>
-                                <span>إرسال عبر SMS</span>
-                            </button>
-                        </div>
+                        <button type="submit" class="w-full bg-[#0B192C] hover:bg-[#1E3E62] text-[#FFD700] font-black py-4 rounded-xl shadow-lg border-b-4 border-[#D4AF37] flex items-center justify-center gap-2 text-sm sm:text-base transition-all mt-6">
+                            <i class="fa-solid fa-paper-plane"></i> إرسال طلب الحجز للصراف الآن
+                        </button>
                     </form>
                 </div>
-            </section>
-        </div>
 
-        <!-- TELLER TAB CONTENT -->
-        <div id="tab-teller" class="hidden space-y-6">
-            
-            <!-- Teller Auth Section -->
-            <div id="teller-login-sec" class="max-w-md mx-auto navy-card rounded-2xl p-6 shadow-2xl text-center border border-gold-500/30">
-                <div class="w-16 h-16 rounded-full gold-gradient mx-auto mb-4 flex items-center justify-center text-navy-950 text-2xl font-bold shadow-lg">
-                    <i class="fa-solid fa-lock"></i>
+                <!-- Result & Info Card -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div id="ticket-display-card" class="bg-white border-2 border-dashed border-slate-300 p-8 rounded-3xl text-center shadow-lg min-h-[380px] flex flex-col items-center justify-center">
+                        <div class="w-16 h-16 bg-amber-50 text-[#D4AF37] rounded-2xl flex items-center justify-center text-3xl mb-4 border border-amber-200 shadow-sm">
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+                        </div>
+                        <h4 class="font-black text-lg text-slate-800">في انتظار تسجيل الحجز</h4>
+                        <p class="text-xs text-slate-500 mt-2 max-w-xs leading-relaxed">قم بملء نموذج الحجز للتوجه فوراً إلى إرسال الطلب عبر الواتساب واستلام الموافقة وموعد الشباك.</p>
+                    </div>
+
+                    <!-- Quick Location Card -->
+                    <div class="bg-[#0B192C] text-white p-6 rounded-3xl border border-[#D4AF37]/40 shadow-xl">
+                        <h4 class="text-sm font-black text-[#FFD700] mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-map-location-dot"></i> عنوان فرع سمالوط
+                        </h4>
+                        <p class="text-xs text-slate-300 mb-4 leading-relaxed">المنيا - سمالوط - شارع الجمهورية - أمام مسجد عبدالجواد سالم.</p>
+                        <div class="flex gap-2">
+                            <a href="https://maps.google.com/?q=Samalut+Minya+Egypt" target="_blank" class="w-full bg-[#D4AF37] hover:bg-[#FFD700] text-[#0B192C] font-black py-2.5 rounded-xl text-xs text-center transition-all">
+                                فتح في الخريطة GPS
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-2">دخول لوحة تحكم الصراف</h3>
-                <p class="text-xs text-gray-400 mb-4">يرجى أدخل كلمة المرور المعتمدة للفرع</p>
-                
-                <input type="password" id="teller-password" placeholder="كلمة المرور (12345)" class="w-full bg-navy-950 border border-gray-700 rounded-xl p-3 text-center text-white focus:border-gold-500 outline-none mb-4 tracking-widest font-bold">
-                <button onclick="loginTeller()" class="w-full py-3 gold-gradient text-navy-950 font-bold rounded-xl shadow-lg hover:brightness-110 transition">دخول النظام</button>
             </div>
+        </section>
 
-            <!-- Teller Main Dashboard -->
-            <div id="teller-dash-sec" class="hidden space-y-6">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center navy-card p-4 rounded-xl gap-4 border border-gold-500/20">
+        <!-- TAB 2: RATES & CALCULATOR -->
+        <section id="tab-rates" class="hidden grid lg:grid-cols-12 gap-8 animate-fadeIn">
+            <!-- Rates Table -->
+            <div class="lg:col-span-7 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
                     <div>
-                        <h2 class="text-xl font-bold text-white flex items-center">
-                            <i class="fa-solid fa-list-check text-gold-400 ml-2"></i> طلبات الحجز المسبق الواردة
-                        </h2>
-                        <p class="text-xs text-gray-400">إدارة الطلبات المباشرة لفرع سمالوط وتحديد رقم الشباك والمواعيد</p>
+                        <span class="bg-amber-100 text-[#0B192C] text-[10px] font-extrabold px-3 py-1 rounded-full border border-amber-300">الشركة المصرية للصرافة</span>
+                        <h2 class="text-xl font-black text-[#0B192C] mt-1">أسعار الصرف اليومية الرسمية</h2>
                     </div>
-                    <div class="flex items-center space-x-2 space-x-reverse">
-                        <button onclick="clearAllBookings()" class="px-3 py-1.5 bg-red-500/10 text-red-400 border border-red-500/30 hover:bg-red-500/20 rounded-lg text-xs font-bold transition">
-                            <i class="fa-solid fa-trash ml-1"></i> مسح جميع الطلبات
-                        </button>
-                        <button onclick="logoutTeller()" class="px-3 py-1.5 bg-gray-800 text-gray-300 hover:bg-gray-700 rounded-lg text-xs font-bold transition">
-                            خروج
-                        </button>
+                    <button onclick="fetchLiveRates()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-3.5 py-2 rounded-xl text-xs font-bold border border-slate-300 transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-arrows-rotate text-emerald-600"></i> تحديث الأسعار
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-right">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-xs text-slate-500 font-extrabold bg-slate-50">
+                                <th class="p-3 rounded-r-xl">العملة</th>
+                                <th class="p-3 text-center">الرمز</th>
+                                <th class="p-3 text-emerald-600">الشراء (منك)</th>
+                                <th class="p-3 text-slate-900 rounded-l-xl">البيع (لك)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rates-table-body" class="divide-y divide-slate-100 text-xs sm:text-sm">
+                            <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-4 leading-relaxed"><i class="fa-solid fa-info-circle text-amber-500"></i> الأسعار محدثة وفقاً لأحدث النشرات المعتمَدة ومتاحة للتنفيذ بفرع سمالوط.</p>
+            </div>
+
+            <!-- Currency Calculator -->
+            <div class="lg:col-span-5 bg-[#0B192C] text-white p-6 sm:p-8 rounded-3xl shadow-2xl border-2 border-[#D4AF37] flex flex-col justify-between">
+                <div>
+                    <h3 class="text-lg font-black text-[#FFD700] mb-4 pb-2 border-b border-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-calculator text-[#D4AF37]"></i> حاسبة تحويل العملات
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs text-slate-300 mb-1.5 font-bold">نوع المعاملة</label>
+                            <div class="grid grid-cols-2 gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800">
+                                <button type="button" id="btn-calc-buy" onclick="setCalcType('buy')" class="py-2.5 text-xs font-black rounded-lg bg-[#D4AF37] text-[#0B192C] transition-all">نشتري منك (شراء)</button>
+                                <button type="button" id="btn-calc-sell" onclick="setCalcType('sell')" class="py-2.5 text-xs font-black rounded-lg text-slate-300 transition-all">نبيع لك (بيع)</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-slate-300 mb-1.5 font-bold">اختر العملة الأجنبية</label>
+                            <select id="calc-currency" onchange="calculateTotal()" class="w-full bg-slate-900 border border-slate-700 p-3.5 rounded-xl text-white font-bold text-xs sm:text-sm focus:border-[#D4AF37] outline-none">
+                                <option value="USD">دولار أمريكي (USD)</option>
+                                <option value="EUR">يورو أوروبي (EUR)</option>
+                                <option value="SAR">ريال سعودي (SAR)</option>
+                                <option value="AED">درهم إماراتي (AED)</option>
+                                <option value="GBP">جنيه إسترليني (GBP)</option>
+                                <option value="KWD">دينار كويتي (KWD)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs text-slate-300 mb-1.5 font-bold">المبلغ بالعملة الأجنبية</label>
+                            <input type="number" id="calc-amount" value="100" min="1" oninput="calculateTotal()" dir="ltr" class="w-full bg-slate-900 border border-slate-700 p-3.5 rounded-xl text-white font-black text-left text-lg focus:border-[#D4AF37] outline-none" />
+                        </div>
                     </div>
                 </div>
 
-                <!-- Bookings Table/Cards -->
-                <div id="bookings-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Dynamic bookings cards will be rendered here -->
+                <div class="mt-8 pt-4 border-t border-slate-800">
+                    <span class="text-xs text-slate-400 font-bold block mb-1">المبلغ الإجمالي المقابل بالجنيه المصري:</span>
+                    <div id="calc-total" class="text-3xl font-black text-[#FFD700]">0.00 <span class="text-sm font-bold text-slate-300">ج.م</span></div>
                 </div>
             </div>
+        </section>
+
+        <!-- TAB 3: ABOUT & GALLERY -->
+        <section id="tab-about" class="hidden space-y-8 animate-fadeIn">
+            <!-- Features Cards -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-amber-50 text-[#D4AF37] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-amber-200">
+                        <i class="fa-solid fa-[#D4AF37] fa-vault"></i>
+                    </div>
+                    <h3 class="font-black text-slate-900 text-lg mb-2">أعلى مستويات الأمان</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">نضمن لك تنفيذ كافة معاملاتك المالية وبيع وشراء العملات وفقاً لأعلى معايير الشفافية والسرية.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-emerald-200">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-black text-slate-900 text-lg mb-2">سرعة وبدون زحام</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">من خلال نظام الحجز المسبق المباشر عبر الموقع، تصل للفرع وتتجه فوراً للشباك المحدد لك.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-indigo-200">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="font-black text-slate-900 text-lg mb-2">أفضل أسعار الصرف</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">نوفر أسعار صرف رسمية ودقيقة معتمدة للريال والدولار واليورو والعملات العربي والأجنبية.</p>
+                </div>
+            </div>
+
+            <!-- Image Gallery -->
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl">
+                <h3 class="text-xl font-black text-[#0B192C] mb-6 pb-3 border-b border-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-[#D4AF37]"></i> معرض صور الفرع والخدمات
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="rounded-2xl overflow-hidden shadow-md border border-slate-200 group">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80" alt="صالة المعاملات" class="w-full h-48 object-cover group-hover:scale-105 transition-all duration-300" />
+                        <div class="p-4 bg-slate-900 text-white">
+                            <h4 class="font-bold text-xs text-[#FFD700]">صالة معاملات الصرف</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">مجهزة بالكامل لراحة العملاء وسرعة الخدمة.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden shadow-md border border-slate-200 group">
+                        <img src="https://images.unsplash.com/photo-1607863680198-23d4b2565df0?auto=format&fit=crop&w=600&q=80" alt="العد والتدقيق" class="w-full h-48 object-cover group-hover:scale-105 transition-all duration-300" />
+                        <div class="p-4 bg-slate-900 text-white">
+                            <h4 class="font-bold text-xs text-[#FFD700]">أحدث أجهزة عد وفحص النقدية</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">دقة متناهية وأعلى درجات الأمان في التسليم.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden shadow-md border border-slate-200 group">
+                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=600&q=80" alt="العملات الأجنبية" class="w-full h-48 object-cover group-hover:scale-105 transition-all duration-300" />
+                        <div class="p-4 bg-slate-900 text-white">
+                            <h4 class="font-bold text-xs text-[#FFD700]">توفر كافة العملات الرئيسية</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">دولار، ريال، يورو، درهم، دينار، وجنيه إسترليني.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xl space-y-4">
+                <h3 class="text-xl font-black text-[#0B192C] mb-4 pb-3 border-b border-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-circle-question text-[#D4AF37]"></i> الأسئلة الشائعة للعملاء
+                </h3>
+                <div class="space-y-3 text-xs sm:text-sm">
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-black text-[#0B192C] mb-1">ما هي المستندات المطلوبة لإتمام عملية الصرف؟</h4>
+                        <p class="text-slate-600">بطاقة الرقم القومي سارية للمواطنين المصريين، أو جواز السفر ساري للإخوة الأجانب والمقيمين.</p>
+                    </div>
+                    <div class="p-4 bg-slate-50 rounded-2xl border border-slate-200">
+                        <h4 class="font-black text-[#0B192C] mb-1">كيف أستفيد من نظام الحجز المسبق؟</h4>
+                        <p class="text-slate-600">قم بتعبئة نموذج الحجز في Tab الحجز المسبق، واضغط إرسال، وسيقوم الصراف بتحديد شباكك وموعدك وإرسال تأكيد الحجز وموقع الفرع على الواتساب.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTH MODAL FOR TELLER -->
+        <div id="auth-modal" class="hidden bg-white p-8 rounded-3xl border border-slate-200 shadow-2xl max-w-md mx-auto text-center my-12 animate-fadeIn">
+            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 border border-blue-200">
+                <i class="fa-solid fa-user-lock"></i>
+            </div>
+            <h3 class="text-xl font-black text-[#0B192C] mb-2">دخول لوحة الصراف</h3>
+            <p class="text-xs text-slate-500 mb-6">يرجى إدخال كلمة المرور للوصول إلى طلبات الحجز المسبق.</p>
+            <form onsubmit="handleAuthLogin(event)" class="space-y-4">
+                <input type="password" id="admin-pass-input" placeholder="كلمة المرور (12345)" required class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-center text-slate-900 font-black outline-none focus:border-[#0B192C]" />
+                <button type="submit" class="w-full bg-[#0B192C] text-[#FFD700] font-black py-3.5 rounded-xl shadow-lg border-b-4 border-[#D4AF37]">تسجيل الدخول</button>
+            </form>
+            <p id="auth-error" class="text-xs text-rose-600 font-bold mt-3 hidden">كلمة المرور غير صحيحة! (جرب: 12345)</p>
         </div>
+
+        <!-- TAB 4: TELLER DASHBOARD -->
+        <section id="tab-teller" class="hidden space-y-6 animate-fadeIn">
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-md flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-black text-[#0B192C]">لوحة تحكم الصراف - فرع سمالوط</h2>
+                    <p class="text-xs text-slate-500 mt-0.5">إدارة الحجوزات المسبقة، القبول، وتوزيع الشبابيك</p>
+                </div>
+                <button onclick="logoutTeller()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 px-4 py-2 rounded-xl text-xs font-bold border border-rose-200 transition-all">خروج</button>
+            </div>
+
+            <!-- Queue Management Table -->
+            <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-xl overflow-x-auto">
+                <table class="w-full text-right text-xs sm:text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-200 text-xs text-slate-500 font-extrabold bg-slate-50">
+                            <th class="p-3">رقم الطلب</th>
+                            <th class="p-3">اسم العميل</th>
+                            <th class="p-3">الهاتف</th>
+                            <th class="p-3">التاريخ والوقت المطلوبة</th>
+                            <th class="p-3">الشباك والموعد المحدد</th>
+                            <th class="p-3">الحالة</th>
+                            <th class="p-3 text-center">الإجراء والاتخاذ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teller-queue-tbody" class="divide-y divide-slate-100">
+                        <!-- Dynamic Queue Content -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
     </main>
 
-    <footer class="bg-navy-950 border-t border-gray-800 mt-12 py-6 text-center text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto px-4">
-            <p class="font-bold text-gray-400">الشركة المصرية للصرافة - فرع سمالوط VIP</p>
-            <p class="mt-1">العنوان: شارع الجمهورية - أمام مسجد عبدالجواد سالم - سمالوط - المنيا</p>
-            <p class="mt-1">أرقام التواصل المباشر: <span class="text-gold-400 font-mono">086-3446509</span> | <span class="text-gold-400 font-mono">086-3446519</span></p>
-            <p class="mt-3 text-[10px] text-gray-600">جميع حقوق الطبع والنشر محفوظة © 2026</p>
-        </div>
-    </footer>
-
     <script>
-        // System State
-        const TELLER_PHONE = "201000000000"; // Default Teller phone
-        const BRANCH_MAP_URL = "https://maps.google.com/?q=28.3121,30.7121";
+        const ADMIN_PIN = '12345';
+        let isAuthenticated = false;
 
-        const ratesData = [
-            { name: "دولار أمريكي", code: "USD", buy: 52.38, sell: 52.48, flag: "🇺🇸" },
-            { name: "يورو أوروبي", code: "EUR", buy: 58.46, sell: 59.09, flag: "🇪🇺" },
-            { name: "ريال سعودي", code: "SAR", buy: 13.92, sell: 13.95, flag: "🇸🇦" },
-            { name: "درهم إماراتي", code: "AED", buy: 14.25, sell: 14.29, flag: "🇦🇪" },
-            { name: "جنيه إسترليني", code: "GBP", buy: 69.21, sell: 69.42, flag: "🇬🇧" },
-            { name: "دينار كويتي", code: "KWD", buy: 169.81, sell: 170.31, flag: "🇰🇼" }
+        let currenciesData = [
+            { code: 'USD', name: 'دولار أمريكي', buy: 52.38, sell: 52.48 },
+            { code: 'EUR', name: 'يورو أوروبي', buy: 58.46, sell: 59.09 },
+            { code: 'SAR', name: 'ريال سعودي', buy: 13.92, sell: 13.95 },
+            { code: 'AED', name: 'درهم إماراتي', buy: 14.25, sell: 14.29 },
+            { code: 'GBP', name: 'جنيه إسترليني', buy: 69.21, sell: 69.42 },
+            { code: 'KWD', name: 'دينار كويتي', buy: 169.81, sell: 170.31 }
         ];
 
-        // Init App
-        window.onload = function() {
-            renderRates();
-            calculateExchange();
-            initDefaultDate();
-            renderBookings();
-        };
+        let calcType = 'buy';
 
-        function initDefaultDate() {
-            const dateInput = document.getElementById('booking-date');
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.value = today;
-            dateInput.min = today;
-        }
+        document.getElementById('book-date').value = new Date().toISOString().split('T')[0];
 
-        // Render Rates
-        function renderRates() {
-            const body = document.getElementById('rates-body');
-            body.innerHTML = ratesData.map(r => `
-                <tr class="hover:bg-navy-900/50 transition">
-                    <td class="py-3 font-bold text-white flex items-center">
-                        <span class="ml-2 text-base">${r.flag}</span> ${r.name}
-                    </td>
-                    <td class="py-3 text-gold-400 font-mono font-bold">${r.code}</td>
-                    <td class="py-3 font-mono text-emerald-400 font-bold">${r.buy.toFixed(2)} ج.م</td>
-                    <td class="py-3 font-mono text-gold-400 font-bold">${r.sell.toFixed(2)} ج.م</td>
-                </tr>
-            `).join('');
-        }
-
-        // Calculator Logic
-        function calculateExchange() {
-            const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
-            const code = document.getElementById('calc-currency').value;
-            const type = document.getElementById('calc-type').value;
-
-            const currency = ratesData.find(c => c.code === code);
-            if(!currency) return;
-
-            const rate = type === 'buy' ? currency.buy : currency.sell;
-            const total = amount * rate;
-
-            document.getElementById('calc-result').innerText = total.toLocaleString('ar-EG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ج.م';
-        }
-
-        // Switch Tabs
         function switchTab(tab) {
-            const clientTab = document.getElementById('tab-client');
-            const tellerTab = document.getElementById('tab-teller');
-            const btnClient = document.getElementById('btn-tab-client');
-            const btnTeller = document.getElementById('btn-tab-teller');
+            document.querySelectorAll('section[id^="tab-"]').forEach(s => s.classList.add('hidden'));
+            document.getElementById('auth-modal').classList.add('hidden');
+            document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
 
-            if (tab === 'client') {
-                clientTab.classList.remove('hidden');
-                tellerTab.classList.add('hidden');
+            if (tab === 'teller' && !isAuthenticated) {
+                document.getElementById('auth-modal').classList.remove('hidden');
+                document.getElementById('btn-teller').classList.add('active');
+                return;
+            }
 
-                btnClient.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 gold-gradient text-navy-950 shadow-md";
-                btnTeller.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 bg-navy-800 text-gray-300 hover:text-white border border-gray-700";
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            document.getElementById('btn-' + tab).classList.add('active');
+
+            if (tab === 'rates') renderRatesTable();
+            if (tab === 'teller') renderTellerDashboard();
+        }
+
+        function handleAuthLogin(e) {
+            e.preventDefault();
+            if (document.getElementById('admin-pass-input').value === ADMIN_PIN) {
+                isAuthenticated = true;
+                document.getElementById('auth-error').classList.add('hidden');
+                switchTab('teller');
             } else {
-                clientTab.classList.add('hidden');
-                tellerTab.classList.remove('hidden');
-
-                btnTeller.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 gold-gradient text-navy-950 shadow-md";
-                btnClient.className = "px-4 py-2 rounded-lg text-xs sm:text-sm font-bold transition-all duration-300 bg-navy-800 text-gray-300 hover:text-white border border-gray-700";
-            }
-        }
-
-        // Booking Logic
-        function getBookingData() {
-            const name = document.getElementById('client-name').value.trim();
-            const phone = document.getElementById('client-phone').value.trim();
-            const date = document.getElementById('booking-date').value;
-            const time = document.getElementById('booking-time').value;
-
-            if (!name || !phone || !date || !time) {
-                alert('يرجى ملء جميع الحقول المطلوبة');
-                return null;
-            }
-
-            return { name, phone, date, time, id: Date.now(), status: 'pending' };
-        }
-
-        function saveBookingToLocal(booking) {
-            let bookings = JSON.parse(localStorage.getItem('samalut_bookings') || '[]');
-            bookings.unshift(booking);
-            localStorage.setItem('samalut_bookings', JSON.stringify(bookings));
-        }
-
-        function sendBookingVia(channel) {
-            const data = getBookingData();
-            if (!data) return;
-
-            saveBookingToLocal(data);
-
-            const msgText = `أنا اسمي ${data.name} وأريد أن أحجز وقت مسبق التاريخ ${data.date} الساعة ${data.time}`;
-
-            if (channel === 'whatsapp') {
-                const url = `https://wa.me/${TELLER_PHONE}?text=${encodeURIComponent(msgText)}`;
-                window.open(url, '_blank');
-            } else if (channel === 'sms') {
-                const url = `sms:${TELLER_PHONE}?body=${encodeURIComponent(msgText)}`;
-                window.location.href = url;
-            }
-        }
-
-        // Teller Authentication
-        function loginTeller() {
-            const pass = document.getElementById('teller-password').value;
-            if (pass === '12345') {
-                document.getElementById('teller-login-sec').classList.add('hidden');
-                document.getElementById('teller-dash-sec').classList.remove('hidden');
-                renderBookings();
-            } else {
-                alert('كلمة المرور غير صحيحة!');
+                document.getElementById('auth-error').classList.remove('hidden');
             }
         }
 
         function logoutTeller() {
-            document.getElementById('teller-login-sec').classList.remove('hidden');
-            document.getElementById('teller-dash-sec').classList.add('hidden');
-            document.getElementById('teller-password').value = '';
+            isAuthenticated = false;
+            switchTab('booking');
         }
 
-        // Render Bookings in Teller Dashboard
-        function renderBookings() {
-            const container = document.getElementById('bookings-container');
-            const bookings = JSON.parse(localStorage.getItem('samalut_bookings') || '[]');
+        async function fetchLiveRates() {
+            try {
+                const res = await fetch('https://open.er-api.com/v6/latest/USD');
+                const data = await res.json();
+                if (data && data.rates && data.rates.EGP) {
+                    const usdEgp = data.rates.EGP;
+                    currenciesData.forEach(c => {
+                        if (c.code === 'USD') {
+                            c.buy = usdEgp;
+                            c.sell = usdEgp + 0.10;
+                        } else if (data.rates[c.code]) {
+                            const rateToEgp = usdEgp / data.rates[c.code];
+                            c.buy = rateToEgp;
+                            c.sell = rateToEgp * 1.005;
+                        }
+                    });
+                    renderRatesTable();
+                }
+            } catch (err) {
+                renderRatesTable();
+            }
+        }
 
-            if (bookings.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-12 navy-card rounded-2xl border border-gray-800">
-                        <i class="fa-solid fa-inbox text-4xl text-gray-600 mb-3"></i>
-                        <p class="text-gray-400 font-bold">لا توجد طلبات حجز حالياً</p>
-                    </div>
+        function renderRatesTable() {
+            const tbody = document.getElementById('rates-table-body');
+            tbody.innerHTML = '';
+            currenciesData.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-slate-800">${c.name}</td>
+                    <td class="p-3 text-center font-black text-slate-500">${c.code}</td>
+                    <td class="p-3 font-black text-emerald-600">${c.buy.toFixed(2)} ج.م</td>
+                    <td class="p-3 font-black text-slate-900">${c.sell.toFixed(2)} ج.م</td>
                 `;
+                tbody.appendChild(tr);
+            });
+            calculateTotal();
+        }
+
+        function setCalcType(type) {
+            calcType = type;
+            document.getElementById('btn-calc-buy').className = type === 'buy' ? 'py-2.5 text-xs font-black rounded-lg bg-[#D4AF37] text-[#0B192C]' : 'py-2.5 text-xs font-black rounded-lg text-slate-300';
+            document.getElementById('btn-calc-sell').className = type === 'sell' ? 'py-2.5 text-xs font-black rounded-lg bg-[#D4AF37] text-[#0B192C]' : 'py-2.5 text-xs font-black rounded-lg text-slate-300';
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const code = document.getElementById('calc-currency').value;
+            const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
+            const currObj = currenciesData.find(c => c.code === code) || currenciesData[0];
+            const rate = calcType === 'buy' ? currObj.buy : currObj.sell;
+            const total = (amount * rate).toLocaleString('ar-EG', { maximumFractionDigits: 2 });
+            document.getElementById('calc-total').innerHTML = `${total} <span class="text-sm font-bold text-slate-300">ج.م</span>`;
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('book-name').value.trim();
+            const phone = document.getElementById('book-phone').value.trim();
+            const date = document.getElementById('book-date').value;
+            const time = document.getElementById('book-time').value;
+            const ticketId = 'SML-' + Math.floor(100 + Math.random() * 900);
+
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            const bookingItem = { id: ticketId, name, phone, service: 'حجز مسبق', date, time, status: 'في انتظار رد الصراف', assignedWindow: 'شباك 1', assignedTime: time };
+            queue.unshift(bookingItem);
+            localStorage.setItem('samalut_queue', JSON.stringify(queue));
+
+            let cleanPhone = phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.startsWith('0')) cleanPhone = '20' + cleanPhone.substring(1);
+            
+            const clientMsg = `أنا اسمي ${name} وأريد أن أحجز وقت مسبق التاريخ ${date} الساعة ${time}`;
+            const waUrl = `https://wa.me/201003394577?text=${encodeURIComponent(clientMsg)}`;
+
+            document.getElementById('ticket-display-card').innerHTML = `
+                <div class="bg-[#0B192C] text-white border-2 border-[#D4AF37] rounded-3xl p-6 shadow-2xl w-full text-center">
+                    <span class="bg-[#D4AF37] text-[#0B192C] text-[10px] font-black px-3 py-1 rounded-full uppercase">تم تجهيز طلب الحجز</span>
+                    <div class="my-4">
+                        <span class="text-xs text-slate-400 block font-bold">رقم الحجز</span>
+                        <div class="text-3xl font-black text-[#FFD700] my-1">${ticketId}</div>
+                    </div>
+                    <div class="bg-slate-900 p-4 rounded-2xl text-right text-xs space-y-2 border border-slate-800">
+                        <p class="font-bold">الاسم: <span class="text-white">${name}</span></p>
+                        <p class="font-bold">الموعد المطلوب: <span class="text-amber-400">${date} (${time})</span></p>
+                    </div>
+                    <a href="${waUrl}" target="_blank" class="mt-4 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-base"></i> إرسال الطلب للصراف عبر الواتساب
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderTellerDashboard() {
+            const queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            const tbody = document.getElementById('teller-queue-tbody');
+            tbody.innerHTML = '';
+
+            if (queue.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-8 text-center text-slate-400 font-bold">لا توجد طلبات حجز مسبق حالياً.</td></tr>`;
                 return;
             }
 
-            container.innerHTML = bookings.map((b, idx) => `
-                <div class="navy-card rounded-xl p-5 border ${b.status === 'accepted' ? 'border-emerald-500/50' : b.status === 'modified' ? 'border-amber-500/50' : 'border-gold-500/30'} shadow-lg space-y-3">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-2">
-                        <span class="font-bold text-white">${b.name}</span>
-                        <span class="text-xs text-gold-400 font-mono">${b.phone}</span>
-                    </div>
-
-                    <div class="text-xs space-y-1 text-gray-300">
-                        <p><i class="fa-regular fa-calendar ml-1 text-gold-400"></i> التاريخ: <span class="font-bold text-white">${b.date}</span></p>
-                        <p><i class="fa-regular fa-clock ml-1 text-gold-400"></i> الوقت المطلوب: <span class="font-bold text-white">${b.time}</span></p>
-                    </div>
-
-                    <!-- Action Controls -->
-                    <div class="pt-2 border-t border-gray-800/80 space-y-3">
-                        <div class="grid grid-cols-2 gap-2">
-                            <div>
-                                <label class="block text-[10px] text-gray-400 mb-1">الشباك المحدد</label>
-                                <select id="window-${idx}" class="w-full bg-navy-950 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
-                                    <option value="شباك 1">شباك 1</option>
-                                    <option value="شباك 2">شباك 2</option>
-                                    <option value="شباك 3 (VIP)">شباك 3 (VIP)</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-[10px] text-gray-400 mb-1">الموعد البديل (عند التعديل)</label>
-                                <input type="time" id="alt-time-${idx}" value="${b.time}" class="w-full bg-navy-950 border border-gray-700 rounded-lg p-1.5 text-xs text-white">
-                            </div>
+            queue.forEach((q, idx) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3 font-black text-[#0B192C]">${q.id}</td>
+                    <td class="p-3 font-bold">${q.name}</td>
+                    <td class="p-3 dir-ltr text-right font-semibold">${q.phone}</td>
+                    <td class="p-3 font-bold text-slate-700">${q.date} (${q.time})</td>
+                    <td class="p-3">
+                        <div class="flex items-center gap-1.5">
+                            <select onchange="updateQueueItem(${idx}, 'assignedWindow', this.value)" class="bg-slate-100 border border-slate-300 p-1.5 rounded-lg text-xs font-bold">
+                                <option value="شباك 1" ${q.assignedWindow === 'شباك 1' ? 'selected' : ''}>شباك 1</option>
+                                <option value="شباك 2" ${q.assignedWindow === 'شباك 2' ? 'selected' : ''}>شباك 2</option>
+                                <option value="شباك 3" ${q.assignedWindow === 'شباك 3' ? 'selected' : ''}>شباك 3</option>
+                            </select>
+                            <input type="text" value="${q.assignedTime}" onchange="updateQueueItem(${idx}, 'assignedTime', this.value)" class="bg-slate-100 border border-slate-300 p-1.5 rounded-lg text-xs font-bold w-28 text-center" />
                         </div>
-
-                        <!-- Buttons for WhatsApp & SMS -->
-                        <div class="space-y-2">
-                            <div class="text-[11px] font-bold text-emerald-400 flex items-center">
-                                <i class="fa-solid fa-check-circle ml-1"></i> قبول الحجز إرسال إلى العميل:
-                            </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="replyClient(${idx}, 'accept', 'whatsapp')" class="py-1.5 px-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition flex items-center justify-center">
-                                    <i class="fa-brands fa-whatsapp ml-1"></i> WhatsApp
-                                </button>
-                                <button onclick="replyClient(${idx}, 'accept', 'sms')" class="py-1.5 px-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg text-xs font-bold transition flex items-center justify-center">
-                                    <i class="fa-solid fa-comment-sms ml-1"></i> SMS
-                                </button>
-                            </div>
-
-                            <div class="text-[11px] font-bold text-amber-400 flex items-center pt-1">
-                                <i class="fa-solid fa-clock-rotate-left ml-1"></i> تعديل الموعد إرسال إلى العميل:
-                            </div>
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="replyClient(${idx}, 'modify', 'whatsapp')" class="py-1.5 px-2 bg-amber-600 hover:bg-amber-500 text-white rounded-lg text-xs font-bold transition flex items-center justify-center">
-                                    <i class="fa-brands fa-whatsapp ml-1"></i> WhatsApp
-                                </button>
-                                <button onclick="replyClient(${idx}, 'modify', 'sms')" class="py-1.5 px-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition flex items-center justify-center">
-                                    <i class="fa-solid fa-comment-sms ml-1"></i> SMS
-                                </button>
-                            </div>
+                    </td>
+                    <td class="p-3">
+                        <span class="px-2.5 py-1 rounded-full text-[11px] font-black ${q.status === 'مقبول' ? 'bg-emerald-100 text-emerald-800' : q.status === 'موعد بديل' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700'}">${q.status}</span>
+                    </td>
+                    <td class="p-3 text-center">
+                        <div class="flex items-center justify-center gap-1.5">
+                            <button onclick="approveBooking(${idx})" class="bg-emerald-600 hover:bg-emerald-700 text-white font-black px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-check"></i> قبول
+                            </button>
+                            <button onclick="rejectBooking(${idx})" class="bg-rose-600 hover:bg-rose-700 text-white font-black px-2.5 py-1.5 rounded-lg text-xs flex items-center gap-1">
+                                <i class="fa-solid fa-xmark"></i> تعديل/بديل
+                            </button>
                         </div>
-                    </div>
-                </div>
-            `).join('');
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
 
-        // Teller Reply Handler
-        function replyClient(index, action, channel) {
-            let bookings = JSON.parse(localStorage.getItem('samalut_bookings') || '[]');
-            const booking = bookings[index];
-            if (!booking) return;
-
-            const selectedWindow = document.getElementById(`window-${index}`).value;
-            const altTime = document.getElementById(`alt-time-${index}`).value;
-
-            let message = "";
-
-            if (action === 'accept') {
-                booking.status = 'accepted';
-                message = `تم قبول حجزك بفرع سمالوط (شارع الجمهورية). الموعد: ${booking.time} - الشباك: ${selectedWindow}. موقعنا: ${BRANCH_MAP_URL}`;
-            } else {
-                booking.status = 'modified';
-                message = `عذراً، الموعد المتاح لفرع سمالوط هو: ${altTime}. يرجى الحضور بالشباك: ${selectedWindow}. موقعنا: ${BRANCH_MAP_URL}`;
-            }
-
-            bookings[index] = booking;
-            localStorage.setItem('samalut_bookings', JSON.stringify(bookings));
-
-            // Clean client phone for link
-            let cleanPhone = booking.phone.replace(/[^0-9]/g, '');
-            if (cleanPhone.startsWith('0')) {
-                cleanPhone = '2' + cleanPhone;
-            }
-
-            if (channel === 'whatsapp') {
-                const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
-                window.open(url, '_blank');
-            } else if (channel === 'sms') {
-                const url = `sms:${cleanPhone}?body=${encodeURIComponent(message)}`;
-                window.location.href = url;
-            }
-
-            renderBookings();
+        function updateQueueItem(idx, key, val) {
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            queue[idx][key] = val;
+            localStorage.setItem('samalut_queue', JSON.stringify(queue));
         }
 
-        function clearAllBookings() {
-            if (confirm('هل أنت تأكد من مسح جميع الطلبات؟')) {
-                localStorage.removeItem('samalut_bookings');
-                renderBookings();
-            }
+        function approveBooking(idx) {
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            queue[idx].status = 'مقبول';
+            localStorage.setItem('samalut_queue', JSON.stringify(queue));
+
+            const item = queue[idx];
+            let cleanPhone = item.phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.startsWith('0')) cleanPhone = '20' + cleanPhone.substring(1);
+
+            const msg = `أهلاً بك أ/ ${item.name} في الشركة المصرية للصرافة (فرع سمالوط).\nتم قبول طلب حجزك بنجاح!\nالموعد المقرَّر: ${item.assignedTime}\nالشباك المخصص: ${item.assignedWindow}\nعنوان الفرع (GPS):\nhttps://maps.google.com/?q=Samalut+Minya+Egypt`;
+            window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+            renderTellerDashboard();
         }
+
+        function rejectBooking(idx) {
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            queue[idx].status = 'موعد بديل';
+            localStorage.setItem('samalut_queue', JSON.stringify(queue));
+
+            const item = queue[idx];
+            let cleanPhone = item.phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.startsWith('0')) cleanPhone = '20' + cleanPhone.substring(1);
+
+            const msg = `أهلاً بك أ/ ${item.name} في الشركة المصرية للصرافة (فرع سمالوط).\nعذراً، الموعد المطلَوب غير متاح حالياً.\nالموعد البديل المتاح للزيارة هو: ${item.assignedTime} على ${item.assignedWindow}.\nعنوان الفرع (GPS):\nhttps://maps.google.com/?q=Samalut+Minya+Egypt`;
+            window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+            renderTellerDashboard();
+        }
+
+        fetchLiveRates();
     </script>
 </body>
 </html>
