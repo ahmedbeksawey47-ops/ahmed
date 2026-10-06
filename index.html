@@ -104,7 +104,7 @@
             </div>
             <div class="flex items-center gap-4 text-[11px] font-bold text-slate-300">
                 <span id="current-time-display" class="bg-black/40 px-3 py-1 rounded-full border border-slate-700 font-mono gold-text">00:00:00</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> معتمد من بنك مصر</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> معتمد من المصريه للصرافه</span>
             </div>
         </div>
     </div>
@@ -123,7 +123,7 @@
                         <span class="bg-[#D4AF37]/20 border border-[#D4AF37] text-[#FFD700] text-xs font-black px-2.5 py-1 rounded-lg">فرع سمالوط</span>
                     </div>
                     <p class="text-xs sm:text-sm text-slate-300 flex items-center justify-center lg:justify-start gap-1.5 mt-1">
-                        <i class="fa-solid fa-location-dot gold-text"></i> الشارع الجديد - بجوار البنك الأهلي المصري - سمالوط - المنيا
+                        <i class="fa-solid fa-location-dot gold-text"></i> شارع الجمهوريه - امام مسجد عبدالجواد سالم  - سمالوط - المنيا
                     </p>
                 </div>
             </div>
@@ -150,7 +150,7 @@
     <nav class="max-w-7xl mx-auto px-4 mt-6 w-full">
         <div class="flex border-b border-slate-800 overflow-x-auto gap-2 pb-2 scrollbar-none">
             <button onclick="switchTab('booking')" id="btn-booking" class="nav-tab active px-5 py-3.5 rounded-t-2xl whitespace-nowrap flex items-center gap-2.5 text-xs sm:text-sm">
-                <i class="fa-solid fa-ticket text-lg"></i> حجز موعد وصرف مسبق
+                <i class="fa-solid fa-ticket text-lg"></i> حجز موعد مسبق
             </button>
             <button onclick="switchTab('display')" id="btn-display" class="nav-tab px-5 py-3.5 rounded-t-2xl whitespace-nowrap flex items-center gap-2.5 text-xs sm:text-sm">
                 <i class="fa-solid fa-tv text-lg"></i> شاشة الانتظار المباشرة
@@ -200,10 +200,8 @@
                             <div>
                                 <label class="block text-xs font-extrabold text-slate-300 mb-2">نوع الخدمة <span class="text-rose-500">*</span></label>
                                 <select id="book-service" onchange="checkFastTrack()" required class="w-full bg-slate-900 border border-slate-700 p-3.5 rounded-xl text-white font-bold text-xs sm:text-sm outline-none focus:border-[#D4AF37]">
-                                    <option value="صرف وتغيير عملة">صرف وتغيير عملات عام</option>
-                                    <option value="مسار سريع (مبالغ بسيطة)">مسار سريع (أقل من 10,000 ج.م)</option>
-                                    <option value="استلام تحويل خارجي">استلام تحويل خارجي جاهز</option>
-                                    <option value="خدمة VIP وكبار العملاء">خدمة كبار العملاء (VIP)</option>
+                                    <option value="تسجيل مسبق"</option>
+                                    
                                 </select>
                             </div>
 
@@ -291,7 +289,7 @@
             <div class="lg:col-span-7 bg-royal-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-6 pb-4 border-b border-slate-800">
                     <div>
-                        <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2.5 py-1 rounded-full border border-emerald-500/30">تحديث بنك مصر التلقائي</span>
+                        <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-black px-2.5 py-1 rounded-full border border-emerald-500/30">تحديث المصريه للصرافه التلقائي</span>
                         <h2 class="text-xl font-black text-white mt-1">جدول أسعار صرف العملات</h2>
                     </div>
                     <button onclick="fetchLiveRates()" class="bg-slate-900 hover:bg-slate-800 text-slate-200 px-4 py-2 rounded-xl text-xs font-bold border border-slate-700 flex items-center gap-2 transition-all">
