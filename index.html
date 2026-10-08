@@ -3,27 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>البرنامج الانتخابي لرئاسة مجلس الأمناء</title>
+    <title>انتخابات اتحاد طلاب المدرسة 🇪🇬</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Font Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        navy: {
-                            800: '#0a192f',
-                            900: '#020c1b',
-                            700: '#112240',
-                        },
-                        gold: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
+                        egypt: {
+                            red: '#ce1126',
+                            gold: '#c09300',
+                            black: '#000000',
                         }
                     },
                     fontFamily: {
@@ -34,757 +29,229 @@
         }
     </script>
     <style>
-        body {
-            font-family: 'Cairo', sans-serif;
-        }
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-bg {
-            background: radial-gradient(circle at top right, #1e3a8a 0%, #0a192f 60%, #020c1b 100%);
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
+        body { font-family: 'Cairo', sans-serif; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; color: black !important; padding: 0 !important; }
+            .print-card { border: 2px solid #000 !important; box-shadow: none !important; margin: 0 !important; width: 100% !important; }
+            .page-break { page-break-after: always; }
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-gold-500 selection:text-white">
+<body class="bg-slate-100 text-slate-800 min-h-screen py-6 px-3 sm:px-6">
 
-    <!-- Navigation Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-navy-900/90 backdrop-blur-md border-b border-white/10 text-white" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo / Title -->
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold-600 to-gold-400 flex items-center justify-center text-navy-900 font-black text-xl shadow-lg shadow-gold-500/20">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-                    <div>
-                        <span class="text-lg font-bold block leading-tight gold-gradient-text">مجلس الأمناء</span>
-                        <span class="text-xs text-slate-300 block">اتحاد الآباء والمعلمين والطلاب</span>
-                    </div>
-                </div>
-
-                <!-- Desktop Nav Navigation Links -->
-                <nav class="hidden md:flex items-center space-x-8 space-x-reverse text-sm font-semibold">
-                    <a href="#hero" class="hover:text-gold-400 transition-colors py-2">الرئيسية</a>
-                    <a href="#vision" class="hover:text-gold-400 transition-colors py-2">الرؤية والهدف</a>
-                    <a href="#pillars" class="hover:text-gold-400 transition-colors py-2">محاور العمل</a>
-                    <a href="#timeline" class="hover:text-gold-400 transition-colors py-2">خطة 100 يوم</a>
-                    <a href="#support" class="hover:text-gold-400 transition-colors py-2">دعم وترشيح</a>
-                </nav>
-
-                <!-- Action Button -->
-                <div class="hidden md:flex items-center space-x-4 space-x-reverse">
-                    <button onclick="window.print()" class="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-xl text-sm font-semibold transition-all border border-white/20">
-                        <i class="fa-solid fa-print text-gold-400"></i>
-                        <span>طباعة البرنامج</span>
-                    </button>
-                    <a href="#support" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-navy-900 font-bold px-5 py-2.5 rounded-xl text-sm shadow-md transition-all hover:scale-105 active:scale-95">
-                        سجّل دعمك
-                    </a>
-                </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center gap-2">
-                    <button onclick="window.print()" class="p-2 text-gold-400 text-lg">
-                        <i class="fa-solid fa-print"></i>
-                    </button>
-                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <!-- Top Action Bar (No Print) -->
+    <div class="max-w-4xl mx-auto mb-6 no-print flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-2xl shadow-md border border-slate-200">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl">🇪🇬</span>
+            <div>
+                <h1 class="font-bold text-slate-900 text-sm sm:text-base">استمارة الترشح لانتخابات اتحاد الطلاب</h1>
+                <p class="text-xs text-slate-500">يمكنك ملء البيانات أدناه وتعديلها مباشرة للطباعة أو المشاركة</p>
             </div>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-navy-900/95 border-b border-white/10 px-4 pt-2 pb-6 space-y-3">
-            <a href="#hero" class="block py-2 text-slate-200 hover:text-gold-400 font-medium border-b border-white/5">الرئيسية</a>
-            <a href="#vision" class="block py-2 text-slate-200 hover:text-gold-400 font-medium border-b border-white/5">الرؤية والهدف</a>
-            <a href="#pillars" class="block py-2 text-slate-200 hover:text-gold-400 font-medium border-b border-white/5">محاور العمل</a>
-            <a href="#timeline" class="block py-2 text-slate-200 hover:text-gold-400 font-medium border-b border-white/5">خطة 100 يوم</a>
-            <a href="#support" class="block py-2 text-slate-200 hover:text-gold-400 font-medium">سجّل دعمك والاقترحات</a>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg text-white pt-32 pb-20 md:pt-40 md:pb-28 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[url('https://png.pngtree.com/background/20210709/original/pngtree-geometric-polygonal-abstract-background-picture-image_924298.jpg')] opacity-5 bg-cover bg-center"></div>
-        
-        <!-- Background Glow Accents -->
-        <div class="absolute top-1/4 right-10 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 left-10 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid md:grid-cols-12 gap-12 items-center">
-                
-                <!-- Hero Content -->
-                <div class="md:col-span-7 space-y-6 text-center md:text-right">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-sm font-semibold">
-                        <i class="fa-solid fa-star"></i>
-                        <span>الانتخابات القادمة لمجلس الأمناء</span>
-                    </div>
-
-                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
-                        شراكة حقيقية.. <br>
-                        <span class="gold-gradient-text">تعليم أفضل ومستقبل واعد</span>
-                    </h1>
-
-                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-                        البرنامج الانتخابي للترشح لرئاسة مجلس أمناء المدرسة. نسعى لبناء جسور التواصل المستمر، وتوفير بيئة تعليمية وآمنة تلبي طموحات أولياء الأمور وتصنع التميز لأبنائنا.
-                    </p>
-
-                    <!-- Candidate Card Quick Badge -->
-                    <div class="pt-2">
-                        <div class="inline-flex items-center gap-4 p-3 bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 text-right">
-                            <div class="w-14 h-14 rounded-xl bg-gradient-to-tr from-slate-700 to-slate-800 border-2 border-gold-500/50 flex items-center justify-center text-gold-400 text-2xl font-bold shadow-md">
-                                <i class="fa-solid fa-user-tie"></i>
-                            </div>
-                            <div>
-                                <span class="text-xs text-slate-400 block font-medium">مرشحكم لرئاسة المجلس</span>
-                                <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                                    <span id="candidate-name-display" class="hover:underline cursor-pointer" title="انقر لتعديل الاسم" onclick="editCandidateName()">[ أ / اسم المرشح الكريم ]</span>
-                                    <button onclick="editCandidateName()" class="text-xs text-gold-400 hover:text-gold-300 bg-gold-500/10 p-1.5 rounded-lg border border-gold-500/20">
-                                        <i class="fa-solid fa-pen"></i>
-                                    </button>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Call to Actions -->
-                    <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
-                        <a href="#pillars" class="bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-navy-900 font-extrabold px-8 py-3.5 rounded-xl shadow-lg hover:shadow-gold-500/25 transition-all transform hover:-translate-y-0.5">
-                            استعرض المحاور الرئيسية
-                        </a>
-                        <a href="#support" class="bg-white/10 hover:bg-white/20 text-white font-bold px-8 py-3.5 rounded-xl border border-white/20 transition-all">
-                            سجل تأييدك الآن
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Hero Countdown & Visual -->
-                <div class="md:col-span-5">
-                    <div class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-6 shadow-2xl relative overflow-hidden">
-                        <div class="absolute -top-12 -right-12 w-32 h-32 bg-gold-500/20 rounded-full blur-2xl"></div>
-
-                        <h3 class="text-lg font-bold text-gold-400 flex items-center justify-center gap-2">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>المتبقي على يوم الاقتراع والانتخاب</span>
-                        </h3>
-
-                        <!-- Countdown Timer Grid -->
-                        <div class="grid grid-cols-4 gap-2 sm:gap-3 dir-ltr" id="countdown-timer">
-                            <div class="bg-navy-900/80 border border-white/10 rounded-2xl p-3">
-                                <span id="days" class="text-2xl sm:text-3xl font-black text-gold-400 block">00</span>
-                                <span class="text-xs text-slate-400">أيام</span>
-                            </div>
-                            <div class="bg-navy-900/80 border border-white/10 rounded-2xl p-3">
-                                <span id="hours" class="text-2xl sm:text-3xl font-black text-white block">00</span>
-                                <span class="text-xs text-slate-400">ساعات</span>
-                            </div>
-                            <div class="bg-navy-900/80 border border-white/10 rounded-2xl p-3">
-                                <span id="minutes" class="text-2xl sm:text-3xl font-black text-white block">00</span>
-                                <span class="text-xs text-slate-400">دقائق</span>
-                            </div>
-                            <div class="bg-navy-900/80 border border-white/10 rounded-2xl p-3">
-                                <span id="seconds" class="text-2xl sm:text-3xl font-black text-gold-400 block">00</span>
-                                <span class="text-xs text-slate-400">ثواني</span>
-                            </div>
-                        </div>
-
-                        <div class="p-4 bg-white/5 rounded-2xl border border-white/5 text-slate-300 text-sm">
-                            <p class="font-semibold text-white mb-1"><i class="fa-solid fa-bullhorn text-gold-400 ml-1"></i> صوتك يصنع الفارق</p>
-                            شاركونا بآرائكم واقتراحاتكم لتكونوا جزءاً من خطة التطوير الحقيقية.
-                        </div>
-
-                        <!-- Total Supporters Counter -->
-                        <div class="pt-2 border-t border-white/10 flex items-center justify-between text-xs text-slate-300">
-                            <span>الداعمون للبرنامج حتى الآن:</span>
-                            <span class="font-black text-gold-400 text-base bg-gold-500/10 px-3 py-1 rounded-full border border-gold-500/20" id="supporter-count">
-                                148 داعم
-                            </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Vision & Objectives Section -->
-    <section id="vision" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-extrabold text-gold-600 uppercase tracking-wider mb-2">رؤيتنا المستقبليّة</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">الرؤية والهدف الأساسي للترشح</p>
-                <div class="w-20 h-1.5 bg-gradient-to-r from-gold-500 to-blue-600 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Vision Card -->
-                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group">
-                    <div class="w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-blue-600/30">
-                        <i class="fa-solid fa-eye"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">الرؤية التربوية</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        الوصول إلى بيئة تعليمية وتربوية متكاملة تضمن راحة الطلاب، وتوفر الدعم الكامل للمعلمين، وتمنح أولياء الأمور دوراً فاعلاً ومؤثراً في اتخاذ القرار داخل المدرسة.
-                    </p>
-                </div>
-
-                <!-- Goal Card -->
-                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group">
-                    <div class="w-16 h-16 rounded-2xl bg-gold-500 text-navy-900 flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-gold-500/30">
-                        <i class="fa-solid fa-bullseye"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">الهدف المباشر</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        تحويل مجلس الأمناء من مجرد كيان شرفي إلى شريك تنفيذي حقيقي يشارك في تطوير المدرسة، ويتابع مستوى الأداء، ويسهم في حل المشكلات بشفافية وسرعة.
-                    </p>
-                </div>
-
-                <!-- Values Card -->
-                <div class="bg-slate-50 border border-slate-200 rounded-3xl p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative group">
-                    <div class="w-16 h-16 rounded-2xl bg-navy-800 text-white flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-navy-800/30">
-                        <i class="fa-solid fa-handshake"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">قيمنا الأساسية</h3>
-                    <p class="text-slate-600 leading-relaxed text-sm">
-                        الشفافية المطلقة، الاستماع الفعّال، العمل الميداني، والتركيز الثابت على المصلحة الفضلى لأبنائنا الطلاب وتوفير الأجواء المناسبة لإبداعهم.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Electoral Pillars Section (Grid + Interactive Modal) -->
-    <section id="pillars" class="py-20 bg-slate-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-extrabold text-gold-600 uppercase tracking-wider mb-2">خطة العمل الشاملة</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">محاور البرنامج الانتخابي</p>
-                <p class="text-slate-600 mt-3 text-sm">برنامج مدروس يعالج الاحتياجات الحقيقية للمدرسة ويخدم الطالب والمعلم وأولياء الأمور</p>
-                <div class="w-20 h-1.5 bg-gradient-to-r from-gold-500 to-blue-600 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <!-- Pillar 1 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 text-blue-600 flex items-center justify-center text-2xl font-bold">
-                                <i class="fa-solid fa-comments"></i>
-                            </div>
-                            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">المحور الأول</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">تعزيز التواصل والشفافية مع أولياء الأمور</h3>
-                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>إطلاق قناة رقمية رسمية ومباشرة للتواصل العاجل وتلقي الشكاوى.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>تنظيم لقاءات دورية مفتوحة شهرياً للاستماع لكافة المقترحات.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>تفعيل "صندوق المقترحات الذكي" لتحويل الأفكار إلى قرارات نافذة.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('pillar1')" class="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 pt-2 border-t border-slate-100">
-                        <span>عرض التفاصيل الكاملة للمحور</span>
-                        <i class="fa-solid fa-arrow-left text-xs"></i>
-                    </button>
-                </div>
-
-                <!-- Pillar 2 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center text-2xl font-bold">
-                                <i class="fa-solid fa-shield-halved"></i>
-                            </div>
-                            <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">المحور الثاني</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">البيئة المدرسية وسلامة الطلاب</h3>
-                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>المتابعة الدورية لمرافق المدرسة (تكييفات، دورات مياه، ملاعب وصالات).</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>تطبيق أقصى إجراءات السلامة أثناء الدخول والخروج وعند الحافلات المدرسية.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>مراجعة دقيقة لمعايير جودة النظافة والوجبات بالكانتين المدرسي.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('pillar2')" class="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:text-emerald-700 pt-2 border-t border-slate-100">
-                        <span>عرض التفاصيل الكاملة للمحور</span>
-                        <i class="fa-solid fa-arrow-left text-xs"></i>
-                    </button>
-                </div>
-
-                <!-- Pillar 3 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center text-2xl font-bold">
-                                <i class="fa-solid fa-book-open-reader"></i>
-                            </div>
-                            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">المحور الثالث</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">الدعم الأكاديمي والأنشطة الطلابية</h3>
-                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>تنظيم مجموعات تقوية ودعم للطلاب بالتنسيق مع معلمي المدرسة.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>تنشيط الفعاليات الرياضية، الثقافية، والرحلات التعليمية المفيدة.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>اكتشاف ودعم الموهوبين والمتميزين وتمثيل المدرسة في المسابقات.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('pillar3')" class="inline-flex items-center gap-2 text-sm font-bold text-amber-600 hover:text-amber-700 pt-2 border-t border-slate-100">
-                        <span>عرض التفاصيل الكاملة للمحور</span>
-                        <i class="fa-solid fa-arrow-left text-xs"></i>
-                    </button>
-                </div>
-
-                <!-- Pillar 4 -->
-                <div class="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <div class="w-14 h-14 rounded-2xl bg-purple-50 border border-purple-100 text-purple-600 flex items-center justify-center text-2xl font-bold">
-                                <i class="fa-solid fa-people-roof"></i>
-                            </div>
-                            <span class="text-xs font-bold text-purple-600 bg-purple-50 px-3 py-1 rounded-full">المحور الرابع</span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-900 mb-4">الشراكة والأنشطة المجتمعية</h3>
-                        <ul class="space-y-3 text-slate-600 text-sm mb-6">
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>الاستفادة من خبرات أولياء الأمور لتنظيم ورش عمل توعوية وتخصصية.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>جلب رعايات ومشاركات مجتمعية لدعم أنشطة الطلاب بدون تكاليف إضافية.</span>
-                            </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-circle-check text-green-500 mt-1"></i>
-                                <span>تكريم دوري ومستمر للمعلمين المتميزين والطلاب الفاعلين.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <button onclick="openModal('pillar4')" class="inline-flex items-center gap-2 text-sm font-bold text-purple-600 hover:text-purple-700 pt-2 border-t border-slate-100">
-                        <span>عرض التفاصيل الكاملة للمحور</span>
-                        <i class="fa-solid fa-arrow-left text-xs"></i>
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- 100 Days Action Plan Timeline -->
-    <section id="timeline" class="py-20 bg-navy-900 text-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-sm font-extrabold text-gold-400 uppercase tracking-wider mb-2">خطة الإنجاز السريع</h2>
-                <p class="text-3xl sm:text-4xl font-extrabold gold-gradient-text">خطة التنفيذ (أول 100 يوم)</p>
-                <p class="text-slate-300 mt-3 text-sm">خطوات عمل مدروسة بزمن محدد من يوم استلام المهام بالمجلس</p>
-                <div class="w-20 h-1.5 bg-gradient-to-r from-gold-500 to-blue-500 mx-auto mt-4 rounded-full"></div>
-            </div>
-
-            <!-- Timeline Cards -->
-            <div class="grid md:grid-cols-3 gap-8 relative">
-                
-                <!-- Month 1 -->
-                <div class="glass-card rounded-3xl p-8 relative hover:border-gold-500/50 transition-all group">
-                    <div class="text-xs font-bold text-gold-400 bg-gold-500/10 inline-block px-3 py-1 rounded-full border border-gold-500/30 mb-4">
-                        الأيام 1 - 30
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white flex items-center gap-2">
-                        <span>الشهر الأول</span>
-                        <span class="text-xs font-normal text-slate-400">(حصر وتثبيت)</span>
-                    </h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                        حصر كافة المشكلات الملحة والمقترحات عبر استبيان شامل يوزع على أولياء الأمور والطلاب وتحديد الأولويات العاجلة للصيانة والأنشطة.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 border-t border-white/10 pt-4">
-                        <li>• إطلاق قناة التواصل الرقمية المباشرة.</li>
-                        <li>• التنسيق مع إدارة المدرسة لحصر نواقص الصيانة.</li>
-                    </ul>
-                </div>
-
-                <!-- Month 2 -->
-                <div class="glass-card rounded-3xl p-8 relative hover:border-gold-500/50 transition-all group">
-                    <div class="text-xs font-bold text-blue-400 bg-blue-500/10 inline-block px-3 py-1 rounded-full border border-blue-500/30 mb-4">
-                        الأيام 31 - 60
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white flex items-center gap-2">
-                        <span>الشهر الثاني</span>
-                        <span class="text-xs font-normal text-slate-400">(تشكيل وتنظيم)</span>
-                    </h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                        تشكيل اللجان الفرعية (لجنة الأمن والسلامة، لجنة الأنشطة والرحلات، اللجنة الأكاديمية) وتحديد المهام الميدانية للبدء الفوري.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 border-t border-white/10 pt-4">
-                        <li>• إشراك أولياء الأمور الراغبين بالتطوع.</li>
-                        <li>• إعداد جدول مجموعات التقوية والأنشطة اللاصفية.</li>
-                    </ul>
-                </div>
-
-                <!-- Month 3 -->
-                <div class="glass-card rounded-3xl p-8 relative hover:border-gold-500/50 transition-all group">
-                    <div class="text-xs font-bold text-emerald-400 bg-emerald-500/10 inline-block px-3 py-1 rounded-full border border-emerald-500/30 mb-4">
-                        الأيام 61 - 100
-                    </div>
-                    <h3 class="text-2xl font-bold mb-3 text-white flex items-center gap-2">
-                        <span>الشهر الثالث</span>
-                        <span class="text-xs font-normal text-slate-400">(تنفيذ وتقييم)</span>
-                    </h3>
-                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
-                        تقديم التقرير الأول لإدارة المدرسة وعرض ما تم إنجازه في اللقاء المفتوح الأول، وافتتاح برنامج دعم المتفوقين والرعايات.
-                    </p>
-                    <ul class="text-xs text-slate-400 space-y-2 border-t border-white/10 pt-4">
-                        <li>• إقامة أول فعالية كبرى ورعايات مدرسية.</li>
-                        <li>• مراجعة تقييم أولياء الأمور لأداء المجلس.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Pledge & Support Interactive Form Section -->
-    <section id="support" class="py-20 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-12 items-start">
-                
-                <!-- Pledge Text Box -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div class="bg-gradient-to-br from-navy-800 to-navy-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
-                        <div class="w-16 h-16 rounded-2xl bg-gold-500/20 text-gold-400 flex items-center justify-center text-3xl mb-6 border border-gold-500/30">
-                            <i class="fa-solid fa-feather-pointed"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-4 gold-gradient-text">تعهد والتزام أمام الجميع</h3>
-                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base">
-                            " أعدكم بأن أكون صوتاً أميناً لكل ولي أمر، وجسراً متيناً للتواصل البنّاء مع إدارة المدرسة والمدرسين، من أجل مصلحة أبنائنا وبناتنا أولاً وأخيراً. "
-                        </p>
-                        <div class="mt-8 pt-6 border-t border-white/10 flex items-center justify-between">
-                            <div>
-                                <span class="text-xs text-slate-400 block">مرشحكم للرئاسة</span>
-                                <span class="text-sm font-bold text-gold-400" id="pledge-candidate-name">[ اسم المرشح ]</span>
-                            </div>
-                            <div class="text-left">
-                                <span class="text-xs text-slate-400 block">مجلس الأمناء</span>
-                                <span class="text-xs font-semibold text-slate-300">الدورة الانتخابية القادمة</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Share Section Card -->
-                    <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm text-center">
-                        <h4 class="font-bold text-slate-900 mb-2">ساهم في نشر البرنامج الانتخابي</h4>
-                        <p class="text-xs text-slate-500 mb-4">شارك رابط الموقع مع أولياء الأمور والزملاء لتعميم الفائدة</p>
-                        <div class="flex justify-center gap-3">
-                            <button onclick="shareLink('WhatsApp')" class="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:opacity-90 transition-opacity">
-                                <i class="fa-brands fa-whatsapp text-lg"></i>
-                            </button>
-                            <button onclick="shareLink('Facebook')" class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:opacity-90 transition-opacity">
-                                <i class="fa-brands fa-facebook-f text-lg"></i>
-                            </button>
-                            <button onclick="copyCurrentUrl()" class="w-10 h-10 rounded-full bg-slate-700 text-white flex items-center justify-center hover:opacity-90 transition-opacity" title="نسخ الرابط">
-                                <i class="fa-solid fa-link text-lg"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Support Form -->
-                <div class="lg:col-span-7">
-                    <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-lg relative">
-                        
-                        <div class="mb-8">
-                            <h3 class="text-2xl font-bold text-slate-900">سجل دعمك وقدم اقتراحك</h3>
-                            <p class="text-slate-600 text-sm mt-1">شاركونا صوتكم ومقترحاتكم لبدء التخطيط والعمل فوراً</p>
-                        </div>
-
-                        <!-- Toast Notification Container -->
-                        <div id="toast" class="hidden mb-6 p-4 rounded-2xl bg-green-50 border border-green-200 text-green-800 text-sm flex items-center gap-3">
-                            <i class="fa-solid fa-circle-check text-green-600 text-lg"></i>
-                            <span id="toast-message">تم تسجيل دعمك ومقترحك بنجاح! شكراً لمشاركتك الفاعلة.</span>
-                        </div>
-
-                        <form id="support-form" onsubmit="handleSupportSubmit(event)" class="space-y-5">
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-2">الاسم الكامل</label>
-                                <input type="text" id="supporter-name" required placeholder="أدخل اسمك الكريم" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 text-sm transition-all outline-none">
-                            </div>
-
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 mb-2">الصفة</label>
-                                    <select id="supporter-role" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 text-sm transition-all outline-none bg-white">
-                                        <option>ولي أمر طالب / طالبة</option>
-                                        <option>معلم / كادر إداري</option>
-                                        <option>طالب / طالبة</option>
-                                        <option>مهتم / عضو مجتمعي</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-700 mb-2">رقم الهاتف (اختياري للتواصل)</label>
-                                    <input type="tel" id="supporter-phone" placeholder="05XXXXXXXX" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 text-sm transition-all outline-none dir-ltr text-right">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold text-slate-700 mb-2">اقتراحك أو رسالتك للمرشح</label>
-                                <textarea id="supporter-message" rows="4" placeholder="ما هي أهم أمنياتك أو مشكلة ترغب في أن يسهم المجلس في حلها؟" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-gold-500 focus:border-gold-500 text-sm transition-all outline-none"></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full bg-gradient-to-r from-navy-800 to-navy-900 hover:from-navy-900 hover:to-black text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-navy-800/30 transition-all flex items-center justify-center gap-2 text-base">
-                                <i class="fa-solid fa-paper-plane text-gold-400"></i>
-                                <span>إرسال وتأكيد الدعم</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Interactive Modal Container -->
-    <div id="pillar-modal" class="fixed inset-0 z-50 hidden bg-navy-900/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative shadow-2xl animate-fade-in max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal()" class="absolute top-5 left-5 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center">
-                <i class="fa-solid fa-xmark text-lg"></i>
+        <div class="flex items-center gap-2">
+            <button onclick="window.print()" class="bg-egypt-red hover:bg-red-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all flex items-center gap-2 shadow">
+                <i class="fa-solid fa-print"></i>
+                <span>طباعة / حفظ كـ PDF</span>
             </button>
-            
-            <div id="modal-content">
-                <!-- Dynamic Content Will Be Inserted Here -->
-            </div>
+            <button onclick="shareOnWhatsApp()" class="bg-green-600 hover:bg-green-700 text-white font-bold px-4 py-2 rounded-xl text-sm transition-all flex items-center gap-2 shadow">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>مشاركة</span>
+            </button>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-navy-900 text-white border-t border-white/10 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-right">
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div>
-                    <h4 class="text-lg font-bold gold-gradient-text">البرنامج الانتخابي لرئاسة مجلس الأمناء</h4>
-                    <p class="text-xs text-slate-400 mt-1">معاً نحو بيئة تعليمة وتربوية متطورة تليق بطلابنا</p>
+    <!-- Main Campaign Card -->
+    <main class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl overflow-hidden border-2 border-slate-200 print-card">
+        
+        <!-- Header Banner with Flag Theme -->
+        <header class="relative bg-gradient-to-r from-red-700 via-egypt-red to-red-800 text-white p-6 sm:p-10 text-center overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-yellow-400/20 rounded-full blur-2xl"></div>
+
+            <div class="relative z-10 space-y-3">
+                <div class="inline-flex items-center gap-2 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold text-yellow-300 border border-yellow-400/30">
+                    <span>🇪🇬</span>
+                    <span>انتخابات اتحاد طلاب المدرسة</span>
+                    <span>🇪🇬</span>
                 </div>
-                <div class="flex items-center gap-4 text-xs text-slate-400">
-                    <span>جميع الحقوق محفوظة © 2026</span>
-                    <span>•</span>
-                    <a href="#hero" class="hover:text-gold-400">العودة للأعلى ↑</a>
-                </div>
+
+                <h1 class="text-2xl sm:text-4xl font-black tracking-tight flex items-center justify-center gap-3">
+                    <span class="text-yellow-300">🗳️</span>
+                    <span>مرشحكم لمنصب أمين اتحاد طلاب المدرسة</span>
+                </h1>
             </div>
-        </div>
-    </footer>
+        </header>
 
-    <!-- JavaScript Section -->
-    <script>
-        // Candidate Name Handling
-        let candidateName = "[ أ / اسم المرشح الكريم ]";
-
-        function editCandidateName() {
-            const newName = prompt("أدخل اسم المرشح للرئاسة:", candidateName);
-            if (newName && newName.trim() !== "") {
-                candidateName = newName.trim();
-                document.getElementById('candidate-name-display').innerText = candidateName;
-                document.getElementById('pledge-candidate-name').innerText = candidateName;
-            }
-        }
-
-        // Countdown Timer Logic (Set to 14 days from now)
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 14);
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) {
-                document.getElementById('countdown-timer').innerHTML = "<div class='col-span-4 text-gold-400 font-bold'>اليوم هو يوم الانتخابات!</div>";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = String(days).padStart(2, '0');
-            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
-            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
-        }
-
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-
-        // Supporter Form State
-        let currentSupporters = 148;
-
-        function handleSupportSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById('supporter-name').value;
-            
-            if (name) {
-                currentSupporters++;
-                document.getElementById('supporter-count').innerText = `${currentSupporters} داعم`;
+        <!-- Student Information Inputs Section -->
+        <section class="p-6 sm:p-8 bg-slate-50 border-b border-slate-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 
-                const toast = document.getElementById('toast');
-                const toastMsg = document.getElementById('toast-message');
-                toastMsg.innerText = `شكراً لك أ/ ${name}! تم تسجيل دعمك ومقترحك بنجاح.`;
-                toast.classList.remove('hidden');
-
-                document.getElementById('support-form').reset();
-
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 5000);
-            }
-        }
-
-        // Modal Pillar Details Data
-        const modalData = {
-            pillar1: {
-                title: "التفاصيل الكاملة: تعزيز التواصل والشفافية",
-                color: "text-blue-600",
-                icon: "fa-comments",
-                details: [
-                    "تأسيس تطبيق إلكتروني / مجموعة واتساب موثقة لتلقي ملاحظات وتنبيهات أولياء الأمور.",
-                    "إصدار النشرة الشهرية الشفافة للاتحاد لتغطية الأنشطة والميزانيات المخصصة للأنشطة.",
-                    "عقد لقاء مفتوح منتصف كل شهر لاستقبال كافة أولياء الأمور وحل المشكلات مباشرة.",
-                    "استبيانات وتقييمات إلكترونية دورية لقياس مدى رضا أولياء الأمور عن الخدمات والأمن المكتسب."
-                ]
-            },
-            pillar2: {
-                title: "التفاصيل الكاملة: البيئة المدرسية والسلامة",
-                color: "text-emerald-600",
-                icon: "fa-shield-halved",
-                details: [
-                    "فحص شامل ودوري لأجهزة التكييف والتهوية وصيانة الإضاءة والمرافق الصحية بالكامل.",
-                    "تنسيق خطة آمنة تماماً لحركة الحافلات والسيارات عند بوابات المدرسة صباحاً وعند الانصراف.",
-                    "الإشراف الصحي اليومي على المأكولات والمشروبات بالكانتين لضمان القيمة الغذائية والجودة.",
-                    "تفعيل أدوات السلامة والوقاية الأولية بالتعاون مع الزائرة الصحية المدرسية."
-                ]
-            },
-            pillar3: {
-                title: "التفاصيل الكاملة: الدعم الأكاديمي والأنشطة",
-                color: "text-amber-600",
-                icon: "fa-book-open-reader",
-                details: [
-                    "إقامة مجموعات تقوية مدعومة للطلاب المراحل الانتقالية بالمدرسة بالتنسيق مع الأفاضل المعلمين.",
-                    "تنظيم الرحلات العلمية والاستكشافية والأنشطة الرياضية الدورية للترويح عن الطلاب.",
-                    "رعاية برنامج 'المبتكر الصغير' لدعم الموهوبين في مجالات البرمجة، الرسم، والخطابة.",
-                    "تجهيز المكتبة المدرسية وغرف الأنشطة بالوسائل الحديثة والممتعة للطلاب."
-                ]
-            },
-            pillar4: {
-                title: "التفاصيل الكاملة: الشراكة والأنشطة المجتمعية",
-                color: "text-purple-600",
-                icon: "fa-people-roof",
-                details: [
-                    "استثمار الكفاءات والمتخصصين من أولياء الأمور (أطباء، مهندسين، كتاب) لتقديم ورش توعوية.",
-                    "البحث عن رعايات مجتمعية لتغطية تكاليف الحفلات والأنشطة دون تحميل أولياء الأمور أي رسوم.",
-                    "حفل تكريم فصلي للمعلمين المتميزين والطلاب المثاليين لتعزيز الروح الإيجابية والمنافسة الشريفة.",
-                    "توثيق العلاقة الإيجابية بين ولي الأمر والمدرس لبناء ثقة متبادلة تخدم الطالب."
-                ]
-            }
-        };
-
-        function openModal(key) {
-            const data = modalData[key];
-            if (!data) return;
-
-            const contentHTML = `
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="w-12 h-12 rounded-2xl bg-slate-100 ${data.color} flex items-center justify-center text-xl">
-                        <i class="fa-solid ${data.icon}"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900">${data.title}</h3>
+                <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+                    <span class="text-slate-400 font-bold text-sm min-w-max">اسم الطالب/</span>
+                    <input type="text" id="student-name" placeholder="أدخل اسمك رباعياً" class="w-full bg-transparent font-bold text-slate-800 border-b border-dashed border-slate-300 focus:border-egypt-red focus:outline-none px-1 text-sm sm:text-base">
                 </div>
-                <div class="space-y-4 text-sm text-slate-700">
-                    <p class="font-semibold text-slate-800">يتضمن هذا المحور النقاط التنفيذية التالية:</p>
-                    <ul class="space-y-3">
-                        ${data.details.map(item => `
-                            <li class="flex items-start gap-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
-                                <i class="fa-solid fa-check text-green-600 mt-1"></i>
-                                <span>${item}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+                    <span class="text-slate-400 font-bold text-sm min-w-max">محافظة/</span>
+                    <input type="text" id="governorate" placeholder="اسم المحافظة" class="w-full bg-transparent font-bold text-slate-800 border-b border-dashed border-slate-300 focus:border-egypt-red focus:outline-none px-1 text-sm sm:text-base">
                 </div>
-                <div class="mt-8 pt-4 border-t border-slate-100 text-left">
-                    <button onclick="closeModal()" class="bg-slate-900 text-white font-bold px-6 py-2.5 rounded-xl text-sm hover:bg-slate-800">
-                        إغلاق
-                    </button>
+
+                <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+                    <span class="text-slate-400 font-bold text-sm min-w-max">إدارة/</span>
+                    <input type="text" id="administration" placeholder="اسم الإدارة التعليمية" class="w-full bg-transparent font-bold text-slate-800 border-b border-dashed border-slate-300 focus:border-egypt-red focus:outline-none px-1 text-sm sm:text-base">
                 </div>
-            `;
 
-            document.getElementById('modal-content').innerHTML = contentHTML;
-            document.getElementById('pillar-modal').classList.remove('hidden');
-        }
+                <div class="bg-white p-3.5 rounded-2xl border border-slate-200 shadow-sm flex items-center gap-3">
+                    <span class="text-slate-400 font-bold text-sm min-w-max">مدرسة/</span>
+                    <input type="text" id="school-name" placeholder="اسم المدرسة" class="w-full bg-transparent font-bold text-slate-800 border-b border-dashed border-slate-300 focus:border-egypt-red focus:outline-none px-1 text-sm sm:text-base">
+                </div>
 
-        function closeModal() {
-            document.getElementById('pillar-modal').classList.add('hidden');
-        }
+            </div>
+        </section>
 
-        // Mobile Menu Toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        <!-- Slogan Section -->
+        <section class="p-6 sm:p-8 text-center bg-amber-50/60 border-b border-amber-200/60">
+            <span class="text-xs font-black text-amber-700 uppercase tracking-widest block mb-2">⭐ شعاري الانتخابي ⭐</span>
+            <blockquote class="text-xl sm:text-3xl font-black text-slate-900 leading-relaxed">
+                « صوتك أمانة... ومشاركتك تصنع الفرق »
+            </blockquote>
+        </section>
 
-        // Share Link Functionality
-        function shareLink(platform) {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent(`البرنامج الانتخابي لرئاسة مجلس الأمناء - ${candidateName}`);
+        <!-- Program Pillars Grid -->
+        <section class="p-6 sm:p-8 space-y-6">
+            <div class="text-center mb-6">
+                <h2 class="text-2xl font-black text-slate-900 flex items-center justify-center gap-2">
+                    <span>💡</span>
+                    <span>برنامجي الانتخابي</span>
+                </h2>
+                <div class="w-16 h-1 bg-egypt-red mx-auto mt-2 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <!-- Item 1 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-blue-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-blue-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>صوتك مسموع</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        أستمع إلى مقترحاتكم وأعمل على نقلها بأمانة.
+                    </p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-emerald-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-emerald-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>نشاطنا قوتنا</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        نشجع المشاركة في الأنشطة الرياضية والثقافية والفنية والاجتماعية والعلمية.
+                    </p>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-purple-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-purple-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>موهبتك تستحق الفرصة</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        نساعد في اكتشاف المواهب وتشجيع أصحابها على المشاركة والتميز.
+                    </p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-teal-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-teal-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>مدرستنا بيتنا</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        نحافظ على نظافة المدرسة ومرافقها وممتلكاتها.
+                    </p>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-rose-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-rose-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>لا للتنمر</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        ننشر الاحترام والتعاون وقبول الآخر بين جميع الطلاب.
+                    </p>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-amber-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-amber-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>معًا نتفوق</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        نشجع الاجتهاد والتفوق والمشاركة في المسابقات العلمية والثقافية.
+                    </p>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-indigo-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-indigo-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>يدًا بيد</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        نساعد بعضنا وننشر روح التعاون والعمل الجماعي.
+                    </p>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm">
+                    <h3 class="font-bold text-base text-cyan-700 flex items-center gap-2 mb-1.5">
+                        <span class="text-lg">🔹</span>
+                        <span>نخدم مدرستنا ومجتمعنا</span>
+                    </h3>
+                    <p class="text-slate-600 text-sm leading-relaxed pr-6">
+                        نشجع العمل التطوعي والمبادرات التي تخدم المدرسة والمجتمع.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Pledge Box -->
+        <section class="p-6 sm:p-8 bg-slate-900 text-white rounded-t-3xl text-center space-y-4">
+            <div class="inline-flex items-center gap-2 text-yellow-400 font-bold text-lg">
+                <span>🤝</span>
+                <span>عهدي لكم</span>
+            </div>
             
-            if (platform === 'WhatsApp') {
-                window.open(`https://api.whatsapp.com/send?text=${text}%20${url}`, '_blank');
-            } else if (platform === 'Facebook') {
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-            }
-        }
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl mx-auto font-semibold">
+                لن أعدكم بالمستحيل... <br>
+                ولكن أعدكم بالاستماع، والاحترام، والأمانة، والعمل معكم بروح الفريق.
+            </p>
 
-        function copyCurrentUrl() {
-            const dummy = document.createElement('input');
-            document.body.appendChild(dummy);
-            dummy.value = window.location.href;
-            dummy.select();
-            document.execCommand('copy');
-            document.body.removeChild(dummy);
-            alert("تم نسخ رابط الموقع بنجاح!");
+            <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <span class="text-base font-bold text-yellow-400">🇪🇬 معًا من أجل مدرسة أفضل 🇪🇬</span>
+                <span class="font-bold text-white text-sm">🗳️ صوتك أمانة... فاختر من يمثلك بصدق</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function shareOnWhatsApp() {
+            const name = document.getElementById('student-name').value || 'المرشح';
+            const school = document.getElementById('school-name').value || 'المدرسة';
+            
+            const text = `🗳️ *انتخابات اتحاد طلاب المدرسة 🇪🇬*\n\n*المرشح:* ${name}\n*مدرسة:* ${school}\n\n⭐ *الشعار:* «صوتك أمانة... ومشاركتك تصنع الفرق»\n\n🇪🇬 *معًا من أجل مدرسة أفضل* 🇪🇬`;
+            
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
         }
     </script>
+
 </body>
 </html>
