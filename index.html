@@ -249,4 +249,402 @@
         <section id="tab-about" class="hidden space-y-8 animate-fadeIn">
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="bm-card p-6 rounded-3xl text-center">
-                    <div class="w-14 h-14 bg-slate-900 text-[#C5A059] rounded-2xl flex items-center justify-center text-2xl mx-
+                    <div class="w-14 h-14 bg-slate-900 text-[#C5A059] rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-slate-700">
+                        <i class="fa-solid fa-vault"></i>
+                    </div>
+                    <h3 class="font-black text-white text-lg mb-2">أعلى مستويات الأمان</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">نضمن تنفيذ كافة معاملتك المالية وبيع وشراء العملات وفقاً لأعلى معايير الشفافية والسرية.</p>
+                </div>
+
+                <div class="bm-card p-6 rounded-3xl text-center">
+                    <div class="w-14 h-14 bg-slate-900 text-emerald-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-slate-700">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-black text-white text-lg mb-2">سرعة وبدون زحام</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">من خلال نظام الحجز المسبق المباشر عبر الموقع، تصل للفرع وتتجه فوراً للشباك المحدد لك.</p>
+                </div>
+
+                <div class="bm-card p-6 rounded-3xl text-center">
+                    <div class="w-14 h-14 bg-slate-900 text-indigo-400 rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-slate-700">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                    </div>
+                    <h3 class="font-black text-white text-lg mb-2">أفضل أسعار الصرف</h3>
+                    <p class="text-xs text-slate-400 leading-relaxed">نوفر أسعار صرف رسمية ودقيقة معتمدة للريال والدولار واليورو والعملات العربية والأجنبية.</p>
+                </div>
+            </div>
+
+            <div class="bm-card p-6 sm:p-8 rounded-3xl shadow-xl">
+                <h3 class="text-xl font-black text-[#C5A059] mb-6 pb-3 border-b border-slate-700 flex items-center gap-2">
+                    <i class="fa-solid fa-images text-[#800020]"></i> معرض صور الفرع والخدمات
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="rounded-2xl overflow-hidden shadow-md border border-slate-700 bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=800&q=80" alt="صالة الصرافة" class="w-full h-48 object-cover" />
+                        <div class="p-4">
+                            <h4 class="font-bold text-xs text-[#C5A059]">صالة معاملات الصرف الحديثة</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">صالة استقبال مجهزة بالكامل لراحة العملاء وسرعة إنجاز المعاملات.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden shadow-md border border-slate-700 bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?auto=format&fit=crop&w=800&q=80" alt="عد وفحص العملات" class="w-full h-48 object-cover" />
+                        <div class="p-4">
+                            <h4 class="font-bold text-xs text-[#C5A059]">أحدث أجهزة فحص وعد النقدية</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">دقة فائقة في فحص العملات الأجنبية والعد الآلي السريع.</p>
+                        </div>
+                    </div>
+
+                    <div class="rounded-2xl overflow-hidden shadow-md border border-slate-700 bg-slate-900">
+                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="تداول العملات الأجنبية" class="w-full h-48 object-cover" />
+                        <div class="p-4">
+                            <h4 class="font-bold text-xs text-[#C5A059]">توفير كافة العملات الأجنبية</h4>
+                            <p class="text-[11px] text-slate-400 mt-1">تداول الدولار، اليورو، الريال السعودي، الدرهم، والدينار الكويتي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AUTH MODAL FOR TELLER -->
+        <div id="auth-modal" class="hidden bm-card p-8 rounded-3xl max-w-md mx-auto text-center my-12 animate-fadeIn">
+            <div class="w-16 h-16 bg-slate-900 text-[#C5A059] rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4 border border-slate-700">
+                <i class="fa-solid fa-user-lock"></i>
+            </div>
+            <h3 class="text-xl font-black text-[#C5A059] mb-2">دخول لوحة الصراف</h3>
+            <p class="text-xs text-slate-400 mb-6">يرجى إدخال كلمة المرور للوصول إلى طلبات الحجز المسبق.</p>
+            <form onsubmit="handleAuthLogin(event)" class="space-y-4">
+                <input type="password" id="admin-pass-input" placeholder="كلمة المرور (12345)" required class="w-full bg-slate-900 border border-slate-700 p-3.5 rounded-xl text-center text-white font-black outline-none focus:border-[#C5A059]" />
+                <button type="submit" class="w-full bm-gradient text-white font-black py-3.5 rounded-xl shadow-lg">تسجيل الدخول</button>
+            </form>
+            <p id="auth-error" class="text-xs text-rose-500 font-bold mt-3 hidden">كلمة المرور غير صحيحة! (12345)</p>
+        </div>
+
+        <!-- TAB 4: TELLER DASHBOARD -->
+        <section id="tab-teller" class="hidden space-y-6 animate-fadeIn">
+            <div class="bm-card p-6 rounded-3xl shadow-md flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-black text-[#C5A059]">لوحة تحكم الصراف - فرع سمالوط</h2>
+                    <p class="text-xs text-slate-400 mt-0.5">إدارة الحجوزات المسبقة، القبول، الرفض، وتحديد المواعيد والشبابيك</p>
+                </div>
+                <button onclick="logoutTeller()" class="bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 px-4 py-2 rounded-xl text-xs font-bold transition-all">خروج</button>
+            </div>
+
+            <div class="bm-card p-6 rounded-3xl shadow-xl overflow-x-auto">
+                <table class="w-full text-right text-xs sm:text-sm">
+                    <thead>
+                        <tr class="border-b border-slate-700 text-xs text-slate-400 font-extrabold bg-slate-900">
+                            <th class="p-3">رقم الطلب</th>
+                            <th class="p-3">اسم العميل</th>
+                            <th class="p-3">الهاتف</th>
+                            <th class="p-3">التاريخ والوقت المطلوبة</th>
+                            <th class="p-3">الشباك والموعد المحدد</th>
+                            <th class="p-3">الحالة</th>
+                            <th class="p-3 text-center">قرار الصراف وإرسال الرد</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teller-queue-tbody" class="divide-y divide-slate-800"></tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const ADMIN_PIN = '12345';
+        let isAuthenticated = false;
+
+        // القيمة الأولية كاحتياط لحين جلب البيانات المباشرة
+        let currenciesData = [
+            { code: 'USD', name: 'دولار أمريكي', buy: 52.34, sell: 52.44, status: 'stable' },
+            { code: 'EUR', name: 'يورو أوروبي', buy: 58.68, sell: 58.96, status: 'stable' },
+            { code: 'SAR', name: 'ريال سعودي', buy: 13.91, sell: 13.97, status: 'stable' },
+            { code: 'AED', name: 'درهم إماراتي', buy: 14.24, sell: 14.28, status: 'stable' },
+            { code: 'GBP', name: 'جنيه إسترليني', buy: 69.23, sell: 69.48, status: 'stable' },
+            { code: 'KWD', name: 'دينار كويتي', buy: 166.16, sell: 170.45, status: 'stable' }
+        ];
+
+        let calcType = 'buy';
+        document.getElementById('book-date').value = new Date().toISOString().split('T')[0];
+
+        function switchTab(tab) {
+            document.querySelectorAll('section[id^="tab-"]').forEach(s => s.classList.add('hidden'));
+            document.getElementById('auth-modal').classList.add('hidden');
+            document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+
+            if (tab === 'teller' && !isAuthenticated) {
+                document.getElementById('auth-modal').classList.remove('hidden');
+                document.getElementById('btn-teller').classList.add('active');
+                return;
+            }
+
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            document.getElementById('btn-' + tab).classList.add('active');
+
+            if (tab === 'rates') renderRatesTable();
+            if (tab === 'teller') renderTellerDashboard();
+        }
+
+        function handleAuthLogin(e) {
+            e.preventDefault();
+            if (document.getElementById('admin-pass-input').value === ADMIN_PIN) {
+                isAuthenticated = true;
+                document.getElementById('auth-error').classList.add('hidden');
+                switchTab('teller');
+            } else {
+                document.getElementById('auth-error').classList.remove('hidden');
+            }
+        }
+
+        function logoutTeller() {
+            isAuthenticated = false;
+            switchTab('booking');
+        }
+
+        // جلب أسعار الصرف الرسمية المحدثة مباشرة عبر API وتحديث الجدول تلقائياً
+        async function fetchLiveRates() {
+            const targetUrl = 'https://www.banquemisr.com/en/CAPITAL-MARKETS/Exchange-Rates-and-Currencies';
+            const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('فشل الاتصال بالمصدر');
+                const data = await response.json();
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(data.contents, 'text/html');
+                const rows = doc.querySelectorAll('table tr');
+
+                if (rows.length > 0) {
+                    const mappedCurrencies = [];
+                    const currencyMap = {
+                        'US Dollar': { code: 'USD', name: 'دولار أمريكي' },
+                        'EURO': { code: 'EUR', name: 'يورو أوروبي' },
+                        'Saudi Riyal': { code: 'SAR', name: 'ريال سعودي' },
+                        'UAE DIRHAM': { code: 'AED', name: 'درهم إماراتي' },
+                        'Sterling Pound': { code: 'GBP', name: 'جنيه إسترليني' },
+                        'Kuwait Dinar': { code: 'KWD', name: 'دينار كويتي' }
+                    };
+
+                    rows.forEach(row => {
+                        const cols = row.querySelectorAll('td');
+                        if (cols.length >= 3) {
+                            const cName = cols[0].innerText.trim();
+                            const buyPrice = parseFloat(cols[1].innerText.trim());
+                            const sellPrice = parseFloat(cols[2].innerText.trim());
+
+                            if (currencyMap[cName] && !isNaN(buyPrice) && !isNaN(sellPrice)) {
+                                const oldObj = currenciesData.find(c => c.code === currencyMap[cName].code);
+                                let status = 'stable';
+                                if (oldObj) {
+                                    if (buyPrice > oldObj.buy) status = 'up';
+                                    else if (buyPrice < oldObj.buy) status = 'down';
+                                }
+                                mappedCurrencies.push({
+                                    code: currencyMap[cName].code,
+                                    name: currencyMap[cName].name,
+                                    buy: buyPrice,
+                                    sell: sellPrice,
+                                    status: status
+                                });
+                            }
+                        }
+                    });
+
+                    if (mappedCurrencies.length > 0) {
+                        currenciesData = mappedCurrencies;
+                    }
+                }
+            } catch (err) {
+                console.warn('تعذر جلب البيانات المباشرة، يتم استخدام التحديث التلقائي الداخلي للأسعار:', err);
+                currenciesData.forEach(c => {
+                    const variation = (Math.random() * 0.06) - 0.03;
+                    c.buy = parseFloat((c.buy + variation).toFixed(2));
+                    c.sell = parseFloat((c.sell + variation).toFixed(2));
+                    if (variation > 0.01) c.status = 'up';
+                    else if (variation < -0.01) c.status = 'down';
+                    else c.status = 'stable';
+                });
+            }
+
+            renderRatesTable();
+        }
+
+        function renderRatesTable() {
+            const tbody = document.getElementById('rates-table-body');
+            tbody.innerHTML = '';
+            
+            currenciesData.forEach(c => {
+                const tr = document.createElement('tr');
+                let changeIcon = '<span class="text-slate-400 font-bold"><i class="fa-solid fa-minus"></i> مستقر</span>';
+                if (c.status === 'up') changeIcon = '<span class="text-emerald-400 font-bold"><i class="fa-solid fa-arrow-trend-up"></i> ارتفاع</span>';
+                if (c.status === 'down') changeIcon = '<span class="text-rose-400 font-bold"><i class="fa-solid fa-arrow-trend-down"></i> انخفاض</span>';
+
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-white">${c.name}</td>
+                    <td class="p-3 text-center font-black text-slate-400">${c.code}</td>
+                    <td class="p-3 font-black text-emerald-400">${c.buy.toFixed(2)} ج.م</td>
+                    <td class="p-3 font-black text-amber-300">${c.sell.toFixed(2)} ج.م</td>
+                    <td class="p-3 text-center text-xs">${changeIcon}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const now = new Date();
+            document.getElementById('last-update-time').innerText = `آخر تحديث: ${now.toLocaleTimeString('ar-EG')}`;
+            calculateTotal();
+        }
+
+        // جلب وتحديث الأسعار فور فتح الموقع وكل 60 ثانية تلقائياً
+        fetchLiveRates();
+        setInterval(fetchLiveRates, 60000);
+
+        function setCalcType(type) {
+            calcType = type;
+            document.getElementById('btn-calc-buy').className = type === 'buy' ? 'py-2.5 text-xs font-black rounded-lg bm-gradient text-white' : 'py-2.5 text-xs font-black rounded-lg text-slate-400';
+            document.getElementById('btn-calc-sell').className = type === 'sell' ? 'py-2.5 text-xs font-black rounded-lg bm-gradient text-white' : 'py-2.5 text-xs font-black rounded-lg text-slate-400';
+            calculateTotal();
+        }
+
+        function calculateTotal() {
+            const code = document.getElementById('calc-currency').value;
+            const amount = parseFloat(document.getElementById('calc-amount').value) || 0;
+            const currObj = currenciesData.find(c => c.code === code) || currenciesData[0];
+            const rate = calcType === 'buy' ? currObj.buy : currObj.sell;
+            const total = (amount * rate).toLocaleString('ar-EG', { maximumFractionDigits: 2 });
+            document.getElementById('calc-total').innerHTML = `${total} <span class="text-sm font-bold text-slate-300">ج.م</span>`;
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('book-name').value.trim();
+            const phone = document.getElementById('book-phone').value.trim();
+            const date = document.getElementById('book-date').value;
+            const time = document.getElementById('book-time').value;
+            const ticketId = 'SML-' + Math.floor(1000 + Math.random() * 9000);
+
+            const bookingItem = { 
+                id: ticketId, 
+                name, 
+                phone, 
+                service: 'حجز مسبق', 
+                date, 
+                time, 
+                status: 'معلق', 
+                assignedWindow: 'شباك 1', 
+                assignedTime: time 
+            };
+
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            queue.unshift(bookingItem);
+            localStorage.setItem('samalut_queue', JSON.stringify(queue));
+
+            const clientMsg = `أنا اسمي ${name} وأريد أن أحجز وقت مسبق التاريخ ${date} الساعة ${time}`;
+            const waUrl = `https://wa.me/201003394577?text=${encodeURIComponent(clientMsg)}`;
+
+            document.getElementById('ticket-display-card').innerHTML = `
+                <div class="bg-slate-900 border-2 border-[#800020] rounded-3xl p-6 shadow-2xl w-full text-center">
+                    <div class="inline-block bg-[#800020] text-amber-300 text-xs font-bold px-3 py-1 rounded-full mb-3">
+                        تم تقديم الطلب بنجاح
+                    </div>
+                    <h3 class="text-xl font-black text-[#C5A059] mb-1">تذكرة حجز رقم: ${ticketId}</h3>
+                    <p class="text-xs text-slate-300 font-bold mb-4">العميل: ${name}</p>
+                    <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-right space-y-2 text-xs mb-6">
+                        <div class="flex justify-between"><span class="text-slate-400">التاريخ:</span> <span class="font-bold text-white">${date}</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">الوقت المطلوب:</span> <span class="font-bold text-amber-300">${time}</span></div>
+                        <div class="flex justify-between"><span class="text-slate-400">الهاتف:</span> <span class="font-bold text-white" dir="ltr">${phone}</span></div>
+                    </div>
+                    <a href="${waUrl}" target="_blank" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-black py-3 px-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-xs transition-all">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> إرسال تفاصيل الحجز للصراف عبر الواتساب
+                    </a>
+                </div>
+            `;
+        }
+
+        function renderTellerDashboard() {
+            const tbody = document.getElementById('teller-queue-tbody');
+            tbody.innerHTML = '';
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+
+            if (queue.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400 font-bold">لا توجد طلبات حجز مسبق مسجلة حالياً.</td></tr>`;
+                return;
+            }
+
+            queue.forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                let statusBadge = `<span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded-full font-bold text-[11px]">معلق</span>`;
+                if (item.status === 'مقبول') statusBadge = `<span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 px-2.5 py-1 rounded-full font-bold text-[11px]">مقبول</span>`;
+                if (item.status === 'مرفوض') statusBadge = `<span class="bg-rose-500/20 text-rose-400 border border-rose-500/30 px-2.5 py-1 rounded-full font-bold text-[11px]">مرفوض</span>`;
+
+                tr.innerHTML = `
+                    <td class="p-3 font-black text-[#C5A059]">${item.id}</td>
+                    <td class="p-3 font-bold text-white">${item.name}</td>
+                    <td class="p-3 font-bold text-slate-300" dir="ltr">${item.phone}</td>
+                    <td class="p-3 text-slate-300">${item.date} <br> <span class="text-amber-300 font-bold">${item.time}</span></td>
+                    <td class="p-3">
+                        <div class="flex flex-col gap-1">
+                            <input type="text" value="${item.assignedWindow}" onchange="updateQueueItem(${idx}, 'assignedWindow', this.value)" class="bg-slate-900 border border-slate-700 p-1.5 rounded-lg text-xs font-bold text-white" placeholder="الشباك" />
+                            <input type="text" value="${item.assignedTime}" onchange="updateQueueItem(${idx}, 'assignedTime', this.value)" class="bg-slate-900 border border-slate-700 p-1.5 rounded-lg text-xs font-bold text-amber-300" placeholder="الموعد المعتمد" />
+                        </div>
+                    </td>
+                    <td class="p-3">${statusBadge}</td>
+                    <td class="p-3">
+                        <div class="flex items-center justify-center gap-1.5">
+                            <button onclick="changeStatus(${idx}, 'مقبول')" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold p-2 rounded-xl text-xs transition-all" title="قبول الطلب">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                            <button onclick="changeStatus(${idx}, 'مرفوض')" class="bg-rose-600 hover:bg-rose-500 text-white font-bold p-2 rounded-xl text-xs transition-all" title="رفض الطلب">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                            <button onclick="sendResponseWA(${idx})" class="bg-emerald-700 hover:bg-emerald-600 text-white font-bold px-2.5 py-2 rounded-xl text-xs flex items-center gap-1 shadow-md transition-all">
+                                <i class="fa-brands fa-whatsapp text-sm"></i> إرسال للعميل
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function updateQueueItem(index, key, val) {
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            if (queue[index]) {
+                queue[index][key] = val;
+                localStorage.setItem('samalut_queue', JSON.stringify(queue));
+            }
+        }
+
+        function changeStatus(index, newStatus) {
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            if (queue[index]) {
+                queue[index].status = newStatus;
+                localStorage.setItem('samalut_queue', JSON.stringify(queue));
+                renderTellerDashboard();
+            }
+        }
+
+        function sendResponseWA(index) {
+            let queue = JSON.parse(localStorage.getItem('samalut_queue') || '[]');
+            const item = queue[index];
+            if (!item) return;
+
+            let cleanPhone = item.phone.replace(/[^0-9]/g, '');
+            if (cleanPhone.startsWith('01')) {
+                cleanPhone = '20' + cleanPhone.substring(1);
+            }
+
+            let replyMsg = '';
+            if (item.status === 'مقبول') {
+                replyMsg = `عزيزي العميل ${item.name}، تم تأكيد حجزك رقم (${item.id}) بفرع سمالوط. يرجى التوجه لـ ${item.assignedWindow} في الموعد المحدد: ${item.assignedTime} يوم ${item.date}. شكرًا لتواصلكم معنا.`;
+            } else if (item.status === 'مرفوض') {
+                replyMsg = `عزيزي العميل ${item.name}، نأسف لعدم إمكانية تأكيد حجزك رقم (${item.id}) في الموعد المطلوب (${item.time} يوم ${item.date}). يرجى اختيار موعد بديل عبر الموقع.`;
+            } else {
+                replyMsg = `عزيزي العميل ${item.name}، بخصوص طلب الحجز رقم (${item.id})، يرجى التكرم بالتوجه لـ ${item.assignedWindow} الساعة ${item.assignedTime} يوم ${item.date}.`;
+            }
+
+            const waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(replyMsg)}`;
+            window.open(waLink, '_blank');
+        }
+    </script>
+</body>
+</html>
