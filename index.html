@@ -128,13 +128,7 @@
                             <div>
                                 <label class="block text-xs font-bold text-slate-300 mb-1.5">الوقت المرغوب للحضور <span class="text-rose-500">*</span></label>
                                 <select id="book-time" required class="w-full bg-slate-900 border border-slate-700 p-3.5 rounded-xl text-white font-bold text-xs sm:text-sm focus:border-[#C5A059]">
-                                    <option value="08:30 صباحاً">08:30 صباحاً</option>
-                                    <option value="10:00 صباحاً">10:00 صباحاً</option>
-                                    <option value="11:30 صباحاً">11:30 صباحاً</option>
-                                    <option value="01:00 ظهراً">01:00 ظهراً</option>
-                                    <option value="03:00 مساءً">03:00 مساءً</option>
-                                    <option value="05:00 مساءً">05:00 مساءً</option>
-                                    <option value="07:00 مساءً">07:00 مساءً</option>
+                                    <!-- يتم توليد الأوقات كل 5 دقائق تلقائياً عبر JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -353,7 +347,40 @@
         const ADMIN_PIN = '12345';
         let isAuthenticated = false;
 
-        // القيمة الأولية كاحتياط لحين جلب البيانات المباشرة
+        // توليد المواعيد المتاحة كل 5 دقائق من 08:00 صباحاً إلى 08:55 مساءً
+        function populateTimeSlots() {
+            const timeSelect = document.getElementById('book-time');
+            if (!timeSelect) return;
+            timeSelect.innerHTML = '';
+
+            // الساعات من 8 صباحاً (8) إلى 8 مساءً (20)
+            for (let hour = 8; hour <= 20; hour++) {
+                for (let minute = 0; minute < 60; minute += 5) {
+                    if (hour === 20 && minute > 55) break; // التوقف عند 08:55 مساءً
+
+                    let displayHour = hour;
+                    let period = 'صباحاً';
+
+                    if (hour >= 12) {
+                        period = hour === 12 ? 'ظهراً' : 'مساءً';
+                        if (hour > 12) displayHour = hour - 12;
+                    }
+
+                    const formattedHour = displayHour.toString().padStart(2, '0');
+                    const formattedMinute = minute.toString().padStart(2, '0');
+                    const timeString = `${formattedHour}:${formattedMinute} ${period}`;
+
+                    const option = document.createElement('option');
+                    option.value = timeString;
+                    option.textContent = timeString;
+                    timeSelect.appendChild(option);
+                }
+            }
+        }
+
+        // تشغيل توليد المواعيد عند تحميل الكود
+        populateTimeSlots();
+
         let currenciesData = [
             { code: 'USD', name: 'دولار أمريكي', buy: 52.34, sell: 52.44, status: 'stable' },
             { code: 'EUR', name: 'يورو أوروبي', buy: 58.68, sell: 58.96, status: 'stable' },
@@ -400,7 +427,6 @@
             switchTab('booking');
         }
 
-        // جلب أسعار الصرف الرسمية المحدثة مباشرة عبر API وتحديث الجدول تلقائياً
         async function fetchLiveRates() {
             const targetUrl = 'https://www.banquemisr.com/en/CAPITAL-MARKETS/Exchange-Rates-and-Currencies';
             const apiUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
@@ -494,7 +520,6 @@
             calculateTotal();
         }
 
-        // جلب وتحديث الأسعار فور فتح الموقع وكل 60 ثانية تلقائياً
         fetchLiveRates();
         setInterval(fetchLiveRates, 60000);
 
