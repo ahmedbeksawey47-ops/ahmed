@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -92,7 +91,7 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37] text-slate-950 text-xs font-black px-3 py-1 rounded-full mb-3 inline-block">حجز المواعيد الإلكترونية بفرع سمالوط</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار</h2>
-                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وعند الضغط على إرسال سيتم توجيهك فوراً لواجهة الصراف لمتابعة طلبك.</p>
+                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وعند الضغط على إرسال سيتم إرسال إشعار فوري على واتساب الصراف (01003394577) والانتقال لواجهة المتابعة.</p>
                 </div>
             </div>
 
@@ -127,7 +126,7 @@
                         </div>
 
                         <button type="submit" class="w-full navy-gradient text-white font-black py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base transition-all hover:brightness-110">
-                            <i class="fa-solid fa-paper-plane"></i> إرسال والانتقال الفوري لوحة الصراف
+                            <i class="fa-solid fa-paper-plane"></i> إرسال وتنبيه الصراف عبر واتساب (01003394577)
                         </button>
                     </form>
                 </div>
@@ -138,7 +137,7 @@
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
                         <h4 class="font-black text-lg text-slate-900">في انتظار تسجيل الحجز</h4>
-                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">أدخل بياناتك واضغط إرسال وسيتم نقلك تلقائياً لوحة الصراف للتحقق والمتابعة.</p>
+                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">أدخل بياناتك واضغط إرسال وسيتم تنبيه رقم الصراف (01003394577) على الواتساب فوراً.</p>
                     </div>
                 </div>
             </div>
@@ -240,7 +239,7 @@
             <div class="bm-card p-6 rounded-3xl shadow-md flex justify-between items-center">
                 <div>
                     <h2 class="text-xl font-black text-[#0B192C]">لوحة تحكم الصراف - فرع سمالوط</h2>
-                    <p class="text-xs text-slate-600 mt-0.5">الطلبات الواردة من العملاء تتحدث لحظياً</p>
+                    <p class="text-xs text-slate-600 mt-0.5">الطلبات الواردة تتحدث لحظياً</p>
                 </div>
                 <button onclick="logoutTeller()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 border border-rose-300 px-4 py-2 rounded-xl text-xs font-bold transition-all">خروج</button>
             </div>
@@ -267,7 +266,7 @@
 
     <script>
         const ADMIN_PIN = '12345';
-        const TELLER_PHONE = '201003394577';
+        const TELLER_PHONE = '201003394577'; // رقم الواتساب الخاص بالصراف
         let isAuthenticated = false;
 
         function populateTimeSlots() {
@@ -341,7 +340,6 @@
             try {
                 let data = localStorage.getItem('bm_samalut_bookings');
                 if(!data || JSON.parse(data).length === 0) {
-                    // بيانات افتراضية تجريبية تظهر فوراً لضمان رؤية حجز مسجل عند الدخول من أي جهاز
                     let initialDemo = [{
                         id: 'BM-7789',
                         name: 'أحمد محمد سري',
@@ -410,8 +408,9 @@
             bookings.unshift(newBooking);
             saveBookings(bookings);
 
-            let alertMsg = `[تنبيه حجز جديد - المصرية للصرافة]\nعميل جديد قام بالحجز:\n- الاسم: ${name}\n- الهاتف: ${phone}\n- الموعد: ${date} الساعة ${time}\n- رقم الحجز: ${newBooking.id}`;
-            window.open(`https://wa.me/${TELLER_PHONE}?text=${encodeURIComponent(alertMsg)}`, '_blank');
+            // فتح الواتساب تلقائياً لرقم الصراف (01003394577) ببيانات العميل الذي حجز
+            let alertMsg = `[تنبيه حجز جديد - المصرية للصرافة سمالوط]\n\nأهلاً بك يا صراف، يوجد عميل جديد قام بالحجز:\n- اسم العميل: ${name}\n- رقم الهاتف: ${phone}\n- الموعد المطلوب: ${date} الساعة ${time}\n- رقم الحجز: ${newBooking.id}\n\nيرجى الدخول للوحة التحكم لمراجعة الطلب وقبوله.`;
+            window.open(`https://wa.me/2${TELLER_PHONE}?text=${encodeURIComponent(alertMsg)}`, '_blank');
 
             isAuthenticated = true;
             switchTab('teller');
@@ -459,9 +458,9 @@
                 let b = bookings[idx];
                 let customerMsg = "";
                 if(status === 'مقبول') {
-                    customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nمرحباً ${b.name}، تم قبول حجزك بنجاح!\n- رقم الحجز: ${b.id}\n- الموعد: ${b.date} الساعة ${b.time}\n- رقم الشباك المخصص: ${winVal}\n\nللاستفسار: 086-3446509 / 086-3446519`;
+                    customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nمرحباً ${b.name}، تم قبول حجزك بنجاح!\n- رقم الحجز: ${b.id}\n- الموعد: ${b.date} الساعة ${b.time}\n- رقم الشباك المخصص: ${winVal}\n\nللاستفسار: 086-3446509`;
                 } else {
-                    customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nعزيزي العميل ${b.name}، نعتذر عن قبول حجزك رقم (${b.id}) في الوقت الحالي لضغط العمل بالفرع.\n\nللاستفسار: 086-3446509 / 086-3446519`;
+                    customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nعزيزي العميل ${b.name}، نعتذر عن قبول حجزك رقم (${b.id}) في الوقت الحالي لضغط العمل بالفرع.\n\nللاستفسار: 086-3446509`;
                 }
 
                 window.open(`https://wa.me/2${b.phone}?text=${encodeURIComponent(customerMsg)}`, '_blank');
