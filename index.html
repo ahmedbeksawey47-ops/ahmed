@@ -94,25 +94,20 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37] text-slate-950 text-xs font-black px-3 py-1 rounded-full mb-3 inline-block">حجز المواعيد الإلكترونية بفرع سمالوط</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار</h2>
-                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم بطاقتك وهاتفك، وسيصل طلبك فوراً إلى واجهة الصراف ويتم تنبيه الفرع.</p>
+                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وسيصل طلبك فوراً إلى واجهة الصراف ويتم تنبيه الفرع.</p>
                 </div>
             </div>
 
             <div class="grid lg:grid-cols-12 gap-8 items-start">
                 <div class="lg:col-span-7 bm-card p-6 sm:p-8 rounded-3xl shadow-md">
                     <h3 class="text-xl font-black text-[#0B192C] pb-3 border-b border-slate-200 mb-6 flex items-center gap-2">
-                        <i class="fa-solid fa-id-card text-[#1E3E62]"></i> نموذج تسجيل الحجز
+                        <i class="fa-solid fa-file-signature text-[#1E3E62]"></i> نموذج تسجيل الحجز
                     </h3>
 
                     <form onsubmit="handleBookingSubmit(event)" class="space-y-5">
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم بالكامل (طبقاً للبطاقة) <span class="text-rose-500">*</span></label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1.5">الاسم بالكامل <span class="text-rose-500">*</span></label>
                             <input type="text" id="book-name" required placeholder="مثال: أحمد محمد علي" class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-slate-900 outline-none font-bold text-xs sm:text-sm focus:border-[#0B192C]" />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1.5">الرقم القومي (14 رقم) <span class="text-rose-500">*</span></label>
-                            <input type="text" id="book-nid" required maxlength="14" placeholder="أدخل رقم البطاقة (14 رقم)" dir="ltr" class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-right text-slate-900 outline-none font-bold text-xs sm:text-sm focus:border-[#0B192C]" />
                         </div>
 
                         <div>
@@ -258,7 +253,6 @@
                         <tr class="border-b border-slate-200 text-xs text-slate-600 font-black bg-slate-50">
                             <th class="p-3">رقم الحجز</th>
                             <th class="p-3">اسم العميل</th>
-                            <th class="p-3">الرقم القومي (14 رقم)</th>
                             <th class="p-3">الهاتف</th>
                             <th class="p-3">الموعد</th>
                             <th class="p-3">رقم الشباك</th>
@@ -275,7 +269,7 @@
 
     <script>
         const ADMIN_PIN = '12345';
-        const TELLER_PHONE = '201003394577'; // رقم الواتساب الخاص بالصراف
+        const TELLER_PHONE = '201003394577';
         let isAuthenticated = false;
 
         function populateTimeSlots() {
@@ -387,19 +381,13 @@
         function handleBookingSubmit(e) {
             e.preventDefault();
             let name = document.getElementById('book-name').value;
-            let nid = document.getElementById('book-nid').value;
             let phone = document.getElementById('book-phone').value;
             let date = document.getElementById('book-date').value;
             let time = document.getElementById('book-time').value;
 
-            if(nid.length !== 14) {
-                alert('يرجى التأكد من إدخال الرقم القومي صحيحاً (14 رقم).');
-                return;
-            }
-
             let newBooking = {
                 id: 'BM-' + Math.floor(1000 + Math.random() * 9000),
-                name, nid, phone, date, time,
+                name, phone, date, time,
                 status: 'قيد المراجعة',
                 window: 'شباك رقم 1',
                 timestamp: Date.now()
@@ -409,7 +397,6 @@
             bookings.unshift(newBooking);
             saveBookings(bookings);
 
-            // عرض التذكرة بنجاح للعميل
             document.getElementById('ticket-display-card').innerHTML = `
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-emerald-200">
                     <i class="fa-solid fa-check"></i>
@@ -419,8 +406,7 @@
                 <p class="text-xs text-emerald-700 font-bold mt-1">حالة التذكرة الآن: قيد المراجعة</p>
             `;
 
-            // إرسال إشعار فوري عبر الواتساب لرقم الصراف المحدد (01003394577)
-            let alertMsg = `[تنبيه حجز جديد - المصرية للصرافة]\nعميل جديد قام بالحجز:\n- الاسم: ${name}\n- الرقم القومي: ${nid}\n- الهاتف: ${phone}\n- الموعد: ${date} الساعة ${time}\n- رقم الحجز: ${newBooking.id}`;
+            let alertMsg = `[تنبيه حجز جديد - المصرية للصرافة]\nعميل جديد قام بالحجز:\n- الاسم: ${name}\n- الهاتف: ${phone}\n- الموعد: ${date} الساعة ${time}\n- رقم الحجز: ${newBooking.id}`;
             window.open(`https://wa.me/${TELLER_PHONE}?text=${encodeURIComponent(alertMsg)}`, '_blank');
         }
 
@@ -431,7 +417,7 @@
             tbody.innerHTML = '';
             
             if(bookings.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-slate-500 font-bold">لا توجد طلبات حجز حتى الآن.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500 font-bold">لا توجد طلبات حجز حتى الآن.</td></tr>`;
                 return;
             }
 
@@ -441,7 +427,6 @@
                     <tr class="border-b border-slate-100">
                         <td class="p-3 font-black text-[#0B192C]">${b.id}</td>
                         <td class="p-3 font-bold text-slate-900">${b.name}</td>
-                        <td class="p-3 font-bold text-slate-700" dir="ltr">${b.nid}</td>
                         <td class="p-3 font-bold text-slate-600" dir="ltr">${b.phone}</td>
                         <td class="p-3 text-slate-700">${b.date} <br><span class="text-[11px] text-amber-600 font-bold">${b.time}</span></td>
                         <td class="p-3"><input type="text" id="win-${idx}" value="${b.window}" class="w-24 bg-slate-50 border border-slate-300 p-1.5 rounded text-center text-slate-900 text-xs font-bold" /></td>
