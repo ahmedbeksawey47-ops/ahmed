@@ -58,9 +58,9 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-2 text-xs">
-                <!-- زر التحميل المباشر للـ APK -->
-                <a href="app-release.apk" download class="gold-gradient text-slate-950 font-black px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 shadow-md hover:brightness-105">
-                    <i class="fa-solid fa-download text-base"></i> تحميل تطبيق الفرع APK
+                <!-- زر التحميل المباشر للـ APK مع منع الإخفاق -->
+                <a href="app-release.apk" download="app-release.apk" class="gold-gradient text-slate-950 font-black px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 shadow-md hover:brightness-105">
+                    <i class="fa-solid fa-download text-base"></i> تحميل تطبيق الأندرويد APK
                 </a>
                 <a href="tel:0863446509" class="bg-slate-100 hover:bg-[#0B192C] hover:text-white border border-slate-300 px-3 py-2.5 rounded-xl transition-all font-bold flex items-center gap-1.5 text-slate-800">
                     <i class="fa-solid fa-phone text-[#D4AF37]"></i> 086-3446509
@@ -79,7 +79,7 @@
                 <i class="fa-solid fa-calendar-check text-emerald-600"></i> حجز موعد مسبق
             </button>
             <button onclick="switchTab('download')" id="btn-download" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
-                <i class="fa-solid fa-mobile-screen-button text-amber-600"></i> تحميل التطبيق
+                <i class="fa-solid fa-mobile-screen-button text-amber-600"></i> تطبيق الأندرويد
             </button>
             <button onclick="switchTab('rates')" id="btn-rates" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
                 <i class="fa-solid fa-money-bill-transfer text-blue-600"></i> أسعار الصرف والحاسبة
@@ -156,15 +156,15 @@
                         <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">قم بملء نموذج الحجز للتوجه فوراً إلى إرسال الطلب واستلام رد الصراف بالقبول أو الرفض.</p>
                     </div>
 
-                    <!-- كارت تحميل التطبيق -->
+                    <!-- كارت تحميل تطبيق الأندرويد -->
                     <div class="bm-card p-6 rounded-3xl shadow-md border-2 border-[#D4AF37]/50 flex flex-col items-center text-center bg-gradient-to-br from-white to-amber-50/40">
                         <div class="w-12 h-12 navy-gradient text-amber-300 rounded-2xl flex items-center justify-center text-2xl mb-3 shadow-md">
-                            <i class="fa-solid fa-mobile-screen"></i>
+                            <i class="fa-brands fa-android"></i>
                         </div>
-                        <h4 class="text-base font-black text-[#0B192C]">تطبيق الشركة على هاتفك</h4>
-                        <p class="text-xs text-slate-600 mt-1 mb-4 leading-relaxed">حمل تطبيق أندرويد لفرع سمالوط واستمتع بمتابعة أسعار العملات والحجوزات الفورية.</p>
-                        <a href="app-release.apk" download class="w-full gold-gradient text-slate-950 font-black py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md">
-                            <i class="fa-solid fa-file-arrow-down text-sm"></i> تحميل تطبيق APK مباشر
+                        <h4 class="text-base font-black text-[#0B192C]">تطبيق الأندرويد (APK)</h4>
+                        <p class="text-xs text-slate-600 mt-1 mb-4 leading-relaxed">نزل تطبيق الفرع الرسمي على هاتفك الأندرويد لتتبع العملات والحجوزات.</p>
+                        <a href="app-release.apk" download="app-release.apk" class="w-full gold-gradient text-slate-950 font-black py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md">
+                            <i class="fa-solid fa-file-arrow-down text-sm"></i> تحميل مباشر APK
                         </a>
                     </div>
                 </div>
@@ -176,18 +176,18 @@
             <div class="bm-card p-8 sm:p-12 rounded-3xl text-center border-2 border-[#0B192C]/20 shadow-md">
                 <div class="max-w-2xl mx-auto space-y-4">
                     <div class="w-20 h-20 navy-gradient rounded-3xl flex items-center justify-center text-white text-4xl mx-auto shadow-xl">
-                        <i class="fa-solid fa-mobile-button text-[#D4AF37]"></i>
+                        <i class="fa-brands fa-android text-[#D4AF37]"></i>
                     </div>
-                    <h2 class="text-2xl sm:text-4xl font-black text-[#0B192C]">تطبيق الشركة المصرية للصرافة</h2>
+                    <h2 class="text-2xl sm:text-4xl font-black text-[#0B192C]">تطبيق الشركة المصرية للصرافة (أندرويد)</h2>
                     <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                         حمل تطبيق الهاتف الخاص بفرع سمالوط الآن لتبقى على اطلاع دائم بأسعار الصرف اليومية، وتستفيد من خدمة حجز الشباك والمواعيد السريعة.
                     </p>
                     <div class="pt-4 flex justify-center">
-                        <a href="app-release.apk" download class="w-full sm:w-auto navy-gradient text-white font-black px-8 py-4 rounded-2xl shadow-lg text-base flex items-center justify-center gap-3 hover:brightness-110">
-                            <i class="fa-solid fa-download text-xl text-[#D4AF37]"></i> تحميل تطبيق APK مباشر
+                        <a href="app-release.apk" download="app-release.apk" class="w-full sm:w-auto navy-gradient text-white font-black px-8 py-4 rounded-2xl shadow-lg text-base flex items-center justify-center gap-3 hover:brightness-110">
+                            <i class="fa-solid fa-download text-xl text-[#D4AF37]"></i> تحميل ملف التثبيت المباشر (APK)
                         </a>
                     </div>
-                    <p class="text-[11px] text-slate-500 mt-2">حجم الملف: 18.5 ميجابايت | متوافق مع كافة إصدارات أندرويد</p>
+                    <p class="text-[11px] text-slate-500 mt-2">حجم الملف: 18.5 ميجابايت | يدعم جميع هواتف أندرويد</p>
                 </div>
             </div>
         </section>
@@ -303,7 +303,7 @@
             <h3 class="text-xl font-black text-[#0B192C] mb-2">دخول لوحة الصراف</h3>
             <p class="text-xs text-slate-600 mb-6">يرجى إدخال كلمة المرور للوصول إلى طلبات الحجز المسبق.</p>
             <form onsubmit="handleAuthLogin(event)" class="space-y-4">
-                <!-- الباسورد مخفي تماماً ومحدد بـ 12345 -->
+                <!-- الباسورد مخفي تماماً 12345 -->
                 <input type="password" id="admin-pass-input" placeholder="كلمة المرور" required class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-center text-slate-900 font-black outline-none focus:border-[#0B192C]" />
                 <button type="submit" class="w-full navy-gradient text-white font-black py-3.5 rounded-xl shadow-md">تسجيل الدخول</button>
             </form>
@@ -344,7 +344,6 @@
         const ADMIN_PIN = '12345';
         let isAuthenticated = false;
 
-        // توليد الأوقات كل 5 دقائق
         function populateTimeSlots() {
             const timeSelect = document.getElementById('book-time');
             if (!timeSelect) return;
@@ -370,7 +369,6 @@
         }
         populateTimeSlots();
 
-        // أسعار العملات الرسمية المطابقة تماماً
         let currenciesData = [
             { code: 'USD', name: 'دولار أمريكي', buy: 53.42, sell: 53.52, status: 'stable' },
             { code: 'EUR', name: 'يورو أوروبي', buy: 59.57, sell: 60.16, status: 'stable' },
@@ -533,6 +531,7 @@
                 msg = `[المصرية للصرافة]\nعزيزي العميل ${b.name}، نعتذر عن قبول حجزك (رقم: ${b.id}) بفرع سمالوط حالياً. يرجى إعادة الحجز في موعد آخر أو الاتصال بنا على: 086-3446509 أو 086-3446519`;
             }
 
+2 استخدام الرابط لتوجيه الواتساب
             window.open(`https://wa.me/2${b.phone}?text=${encodeURIComponent(msg)}`, '_blank');
             alert(`تم تحديث حالة الطلب إلى (${status}) وتم فتح رسالة الواتساب/SMS باسم "المصرية للصرافة" لإرسالها للعميل.`);
         }
