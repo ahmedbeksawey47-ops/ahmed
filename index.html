@@ -78,7 +78,6 @@
             <button onclick="switchTab('about')" id="btn-about" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
                 <i class="fa-solid fa-circle-info text-indigo-600"></i> عن الفرع
             </button>
-            <!-- زر لوحة الصراف مع النقطة الحمراء والعداد -->
             <button onclick="switchTab('teller')" id="btn-teller" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm relative">
                 <i class="fa-solid fa-user-shield text-rose-600"></i> لوحة الصراف
                 <span id="teller-badge-count" class="hidden absolute -top-1.5 -left-1.5 bg-rose-600 text-white text-[10px] font-black w-5 h-5 rounded-full items-center justify-center border-2 border-white pulse-badge">0</span>
@@ -95,7 +94,7 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37] text-slate-950 text-xs font-black px-3 py-1 rounded-full mb-3 inline-block">حجز المواعيد الإلكترونية بفرع سمالوط</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار</h2>
-                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم بطاقتك وهاتفك، وسيصل طلبك فوراً إلى واجهة الصراف بالفرع.</p>
+                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم بطاقتك وهاتفك، وسيصل طلبك فوراً إلى واجهة الصراف ويتم تنبيه الفرع.</p>
                 </div>
             </div>
 
@@ -135,7 +134,7 @@
                         </div>
 
                         <button type="submit" class="w-full navy-gradient text-white font-black py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base transition-all hover:brightness-110">
-                            <i class="fa-solid fa-paper-plane"></i> إرسال الطلب إلى لوحة الصراف فوراً
+                            <i class="fa-solid fa-paper-plane"></i> إرسال الطلب وإبلاغ الصراف فوراً
                         </button>
                     </form>
                 </div>
@@ -146,7 +145,7 @@
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
                         <h4 class="font-black text-lg text-slate-900">في انتظار تسجيل الحجز</h4>
-                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">أدخل بياناتك واضغط إرسال ليظهر رقم تذكرتك وحالة المراجعة من الصراف فوراً.</p>
+                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">أدخل بياناتك واضغط إرسال ليظهر رقم تذكرتك ويتم إرسال إشعار فوري لرقم الفرع.</p>
                     </div>
                 </div>
             </div>
@@ -235,7 +234,7 @@
                 <i class="fa-solid fa-user-lock"></i>
             </div>
             <h3 class="text-xl font-black text-[#0B192C] mb-2">دخول لوحة الصراف</h3>
-            <p class="text-xs text-slate-600 mb-6">يرجى إدخال كلمة المرور للوصول إلى طلبات الحجز.</p>
+            <p class="text-xs text-slate-600 mb-6">يرجى إدخال كلمة المرور (12345) للوصول إلى طلبات الحجز.</p>
             <form onsubmit="handleAuthLogin(event)" class="space-y-4">
                 <input type="password" id="admin-pass-input" placeholder="كلمة المرور" required class="w-full bg-slate-50 border border-slate-300 p-3.5 rounded-xl text-center text-slate-900 font-black outline-none focus:border-[#0B192C]" />
                 <button type="submit" class="w-full navy-gradient text-white font-black py-3.5 rounded-xl shadow-md">تسجيل الدخول</button>
@@ -276,6 +275,7 @@
 
     <script>
         const ADMIN_PIN = '12345';
+        const TELLER_PHONE = '201003394577'; // رقم الواتساب الخاص بالصراف
         let isAuthenticated = false;
 
         function populateTimeSlots() {
@@ -409,14 +409,19 @@
             bookings.unshift(newBooking);
             saveBookings(bookings);
 
+            // عرض التذكرة بنجاح للعميل
             document.getElementById('ticket-display-card').innerHTML = `
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-emerald-200">
                     <i class="fa-solid fa-check"></i>
                 </div>
-                <h4 class="font-black text-lg text-slate-900">تم إرسال طلبك إلى الصراف بنجاح!</h4>
+                <h4 class="font-black text-lg text-slate-900">تم إرسال طلبك للفرع بنجاح!</h4>
                 <p class="text-xs text-slate-600 mt-2">رقم الحجز: <span class="text-[#0B192C] font-black">${newBooking.id}</span></p>
                 <p class="text-xs text-emerald-700 font-bold mt-1">حالة التذكرة الآن: قيد المراجعة</p>
             `;
+
+            // إرسال إشعار فوري عبر الواتساب لرقم الصراف المحدد (01003394577)
+            let alertMsg = `[تنبيه حجز جديد - المصرية للصرافة]\nعميل جديد قام بالحجز:\n- الاسم: ${name}\n- الرقم القومي: ${nid}\n- الهاتف: ${phone}\n- الموعد: ${date} الساعة ${time}\n- رقم الحجز: ${newBooking.id}`;
+            window.open(`https://wa.me/${TELLER_PHONE}?text=${encodeURIComponent(alertMsg)}`, '_blank');
         }
 
         function renderTellerDashboard() {
