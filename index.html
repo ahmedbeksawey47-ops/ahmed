@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -56,10 +57,7 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-2 text-xs">
-                <a href="app-release.apk" download="app-release.apk" class="gold-gradient text-slate-950 font-black px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 shadow-md hover:brightness-105">
-                    <i class="fa-solid fa-download text-base"></i> تحميل تطبيق الأندرويد APK
-                </a>
-                <a href="tel:0863446509" class="bg-slate-100 hover:bg-[#0B192C] hover:text-white border border-slate-300 px-3 py-2.5 rounded-xl transition-all font-bold flex items-center gap-1.5 text-slate-800">
+                <a href="tel:0863446509" class="bg-slate-100 hover:bg-[#0B192C] hover:text-white border border-slate-300 px-4 py-2.5 rounded-xl transition-all font-bold flex items-center gap-1.5 text-slate-800">
                     <i class="fa-solid fa-phone text-[#D4AF37]"></i> 086-3446509
                 </a>
             </div>
@@ -94,7 +92,7 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37] text-slate-950 text-xs font-black px-3 py-1 rounded-full mb-3 inline-block">حجز المواعيد الإلكترونية بفرع سمالوط</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار</h2>
-                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وسيصل طلبك فوراً إلى واجهة الصراف ويتم إرسال تأكيد الموعد عند القبول.</p>
+                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وعند الضغط على إرسال سيتم توجيهك فوراً لواجهة الصراف لمتابعة طلبك.</p>
                 </div>
             </div>
 
@@ -129,7 +127,7 @@
                         </div>
 
                         <button type="submit" class="w-full navy-gradient text-white font-black py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base transition-all hover:brightness-110">
-                            <i class="fa-solid fa-paper-plane"></i> إرسال الطلب وإبلاغ الصراف فوراً
+                            <i class="fa-solid fa-paper-plane"></i> إرسال والانتقال الفوري لوحة الصراف
                         </button>
                     </form>
                 </div>
@@ -140,7 +138,7 @@
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
                         <h4 class="font-black text-lg text-slate-900">في انتظار تسجيل الحجز</h4>
-                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">أدخل بياناتك واضغط إرسال ليظهر رقم تذكرتك ويتم إرسال إشعار فوري لرقم الفرع.</p>
+                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">أدخل بياناتك واضغط إرسال وسيتم نقلك تلقائياً لوحة الصراف للتحقق والمتابعة.</p>
                     </div>
                 </div>
             </div>
@@ -397,17 +395,11 @@
             bookings.unshift(newBooking);
             saveBookings(bookings);
 
-            document.getElementById('ticket-display-card').innerHTML = `
-                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-emerald-200">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <h4 class="font-black text-lg text-slate-900">تم إرسال طلبك للفرع بنجاح!</h4>
-                <p class="text-xs text-slate-600 mt-2">رقم الحجز: <span class="text-[#0B192C] font-black">${newBooking.id}</span></p>
-                <p class="text-xs text-emerald-700 font-bold mt-1">حالة التذكرة الآن: قيد المراجعة</p>
-            `;
-
             let alertMsg = `[تنبيه حجز جديد - المصرية للصرافة]\nعميل جديد قام بالحجز:\n- الاسم: ${name}\n- الهاتف: ${phone}\n- الموعد: ${date} الساعة ${time}\n- رقم الحجز: ${newBooking.id}`;
             window.open(`https://wa.me/${TELLER_PHONE}?text=${encodeURIComponent(alertMsg)}`, '_blank');
+
+            isAuthenticated = true;
+            switchTab('teller');
         }
 
         function renderTellerDashboard() {
@@ -457,7 +449,6 @@
                     customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nعزيزي العميل ${b.name}، نعتذر عن قبول حجزك رقم (${b.id}) في الوقت الحالي لضغط العمل بالفرع.\n\nللاستفسار: 086-3446509 / 086-3446519`;
                 }
 
-                // فتح واتساب العميل تلقائياً لإرسال الرد وتأكيد الموعد
                 window.open(`https://wa.me/2${b.phone}?text=${encodeURIComponent(customerMsg)}`, '_blank');
                 alert(`تم تحديث الحالة إلى (${status}) وتم فتح رسالة الرد للعميل على الواتساب بنجاح.`);
             }
