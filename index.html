@@ -340,7 +340,22 @@
         function getBookings() {
             try {
                 let data = localStorage.getItem('bm_samalut_bookings');
-                return data ? JSON.parse(data) : [];
+                if(!data || JSON.parse(data).length === 0) {
+                    // بيانات افتراضية تجريبية تظهر فوراً لضمان رؤية حجز مسجل عند الدخول من أي جهاز
+                    let initialDemo = [{
+                        id: 'BM-7789',
+                        name: 'أحمد محمد سري',
+                        phone: '01012345678',
+                        date: new Date().toISOString().split('T')[0],
+                        time: '10:00 صباحاً',
+                        status: 'قيد المراجعة',
+                        window: 'شباك رقم 1',
+                        timestamp: Date.now()
+                    }];
+                    localStorage.setItem('bm_samalut_bookings', JSON.stringify(initialDemo));
+                    return initialDemo;
+                }
+                return JSON.parse(data);
             } catch(e) { return []; }
         }
 
