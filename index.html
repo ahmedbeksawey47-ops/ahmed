@@ -94,7 +94,7 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37] text-slate-950 text-xs font-black px-3 py-1 rounded-full mb-3 inline-block">حجز المواعيد الإلكترونية بفرع سمالوط</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار</h2>
-                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وسيصل طلبك فوراً إلى واجهة الصراف ويتم تنبيه الفرع.</p>
+                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">أدخل اسمك ورقم هاتفك، وسيصل طلبك فوراً إلى واجهة الصراف ويتم إرسال تأكيد الموعد عند القبول.</p>
                 </div>
             </div>
 
@@ -257,7 +257,7 @@
                             <th class="p-3">الموعد</th>
                             <th class="p-3">رقم الشباك</th>
                             <th class="p-3">الحالة</th>
-                            <th class="p-3 text-center">قرار الصراف</th>
+                            <th class="p-3 text-center">قرار الصراف وإرسال الرد</th>
                         </tr>
                     </thead>
                     <tbody id="teller-tbody" class="divide-y divide-slate-100"></tbody>
@@ -432,7 +432,7 @@
                         <td class="p-3"><input type="text" id="win-${idx}" value="${b.window}" class="w-24 bg-slate-50 border border-slate-300 p-1.5 rounded text-center text-slate-900 text-xs font-bold" /></td>
                         <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-black ${statusColor}">${b.status}</span></td>
                         <td class="p-3 text-center space-x-1 space-x-reverse">
-                            <button onclick="updateBookingStatus(${idx}, 'مقبول')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">قبول</button>
+                            <button onclick="updateBookingStatus(${idx}, 'مقبول')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">قبول وتأكيد</button>
                             <button onclick="updateBookingStatus(${idx}, 'مرفوض')" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">رفض</button>
                         </td>
                     </tr>
@@ -448,7 +448,18 @@
                 bookings[idx].window = winVal;
                 saveBookings(bookings);
                 renderTellerDashboard();
-                alert(`تم تحديث حالة الحجز إلى (${status}) والشباك (${winVal}) بنجاح!`);
+
+                let b = bookings[idx];
+                let customerMsg = "";
+                if(status === 'مقبول') {
+                    customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nمرحباً ${b.name}، تم قبول حجزك بنجاح!\n- رقم الحجز: ${b.id}\n- الموعد: ${b.date} الساعة ${b.time}\n- رقم الشباك المخصص: ${winVal}\n\nللاستفسار: 086-3446509 / 086-3446519`;
+                } else {
+                    customerMsg = `[الشركة المصرية للصرافة - فرع سمالوط]\nعزيزي العميل ${b.name}، نعتذر عن قبول حجزك رقم (${b.id}) في الوقت الحالي لضغط العمل بالفرع.\n\nللاستفسار: 086-3446509 / 086-3446519`;
+                }
+
+                // فتح واتساب العميل تلقائياً لإرسال الرد وتأكيد الموعد
+                window.open(`https://wa.me/2${b.phone}?text=${encodeURIComponent(customerMsg)}`, '_blank');
+                alert(`تم تحديث الحالة إلى (${status}) وتم فتح رسالة الرد للعميل على الواتساب بنجاح.`);
             }
         }
 
