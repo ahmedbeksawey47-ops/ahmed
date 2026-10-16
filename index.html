@@ -19,11 +19,13 @@
         .nav-tab.active { background-color: #0B192C; color: #FFFFFF; border-bottom: 3px solid #D4AF37; font-weight: 900; }
         .nav-tab { color: #475569; background-color: #E2E8F0; transition: all 0.3s ease; }
         .nav-tab:hover:not(.active) { background-color: #CBD5E1; color: #0B192C; }
+        @keyframes pulse-red { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        .pulse-badge { animation: pulse-red 2s infinite; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
     </style>
 </head>
-<body class="min-h-screen pb-12 selection:bg-[#0B192C] selection:text-white">
+<body class="min-h-screen pb-12 selection:bg-[#0B192C] selection:text-white" onpageshow="checkBookingsSync()">
 
     <!-- Top Banner -->
     <div class="bg-[#0B192C] text-[#F8F9FC] text-xs py-2.5 px-4 border-b border-[#1E3E62]">
@@ -58,7 +60,6 @@
             </div>
 
             <div class="flex flex-wrap items-center justify-center gap-2 text-xs">
-                <!-- زر التحميل المباشر للـ APK مع منع الإخفاق -->
                 <a href="app-release.apk" download="app-release.apk" class="gold-gradient text-slate-950 font-black px-3.5 py-2.5 rounded-xl transition-all flex items-center gap-1.5 shadow-md hover:brightness-105">
                     <i class="fa-solid fa-download text-base"></i> تحميل تطبيق الأندرويد APK
                 </a>
@@ -87,8 +88,10 @@
             <button onclick="switchTab('about')" id="btn-about" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
                 <i class="fa-solid fa-circle-info text-indigo-600"></i> عن الفرع
             </button>
-            <button onclick="switchTab('teller')" id="btn-teller" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm">
+            <!-- زر لوحة الصراف مع النقطة الحمراء والعداد التفاعلي -->
+            <button onclick="switchTab('teller')" id="btn-teller" class="nav-tab px-5 py-3 font-bold text-xs sm:text-sm rounded-t-2xl whitespace-nowrap flex items-center gap-2 shadow-sm relative">
                 <i class="fa-solid fa-user-shield text-rose-600"></i> لوحة الصراف
+                <span id="teller-badge-count" class="hidden absolute -top-1.5 -left-1.5 bg-rose-600 text-white text-[10px] font-black w-5 h-5 rounded-full items-center justify-center border-2 border-white pulse-badge">0</span>
             </button>
         </div>
     </nav>
@@ -102,7 +105,7 @@
                 <div class="relative z-10 max-w-3xl">
                     <span class="bg-[#D4AF37] text-slate-950 text-xs font-black px-3 py-1 rounded-full mb-3 inline-block">حجز المواعيد الإلكترونية بفرع سمالوط</span>
                     <h2 class="text-2xl sm:text-4xl font-black text-white mb-3 leading-tight">احجز موعدك مسبقاً وتجنب الانتظار</h2>
-                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">سجل بياناتك والموعد المرغوب، وسيقوم صراف الفرع بمراجعة الحجز وتأكيد الشباك ووقت الحضور وإرسال الرد.</p>
+                    <p class="text-slate-200 text-xs sm:text-base leading-relaxed">سجل بياناتك والموعد المرغوب، وسيظهر طلبك مباشرة لدى صراف الفرع للمراجعة الفورية.</p>
                 </div>
             </div>
 
@@ -142,7 +145,7 @@
                         </div>
 
                         <button type="submit" class="w-full navy-gradient text-white font-black py-4 rounded-xl shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base transition-all hover:brightness-110">
-                            <i class="fa-solid fa-paper-plane"></i> إرسال طلب الحجز للصراف الآن
+                            <i class="fa-solid fa-paper-plane"></i> إرسال طلب الحجز للفرع فوراً
                         </button>
                     </form>
                 </div>
@@ -153,7 +156,7 @@
                             <i class="fa-solid fa-clock-rotate-left"></i>
                         </div>
                         <h4 class="font-black text-lg text-slate-900">في انتظار تسجيل الحجز</h4>
-                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">قم بملء نموذج الحجز للتوجه فوراً إلى إرسال الطلب واستلام رد الصراف بالقبول أو الرفض.</p>
+                        <p class="text-xs text-slate-600 mt-2 max-w-xs leading-relaxed">قم بملء نموذج الحجز ليرسل فوراً إلى شاشة الصراف ويتم تحديث حالة تذكرتك تلقائياً.</p>
                     </div>
 
                     <!-- كارت تحميل تطبيق الأندرويد -->
@@ -315,7 +318,7 @@
             <div class="bm-card p-6 rounded-3xl shadow-md flex justify-between items-center">
                 <div>
                     <h2 class="text-xl font-black text-[#0B192C]">لوحة تحكم الصراف - فرع سمالوط</h2>
-                    <p class="text-xs text-slate-600 mt-0.5">إدارة الحجوزات وإرسال رسالة SMS / الواتساب باسم "المصرية للصرافة"</p>
+                    <p class="text-xs text-slate-600 mt-0.5">إدارة الحجوزات الواردة من العملاء وتحديث حالتها فوراً</p>
                 </div>
                 <button onclick="logoutTeller()" class="bg-rose-100 hover:bg-rose-200 text-rose-700 border border-rose-300 px-4 py-2 rounded-xl text-xs font-bold transition-all">خروج</button>
             </div>
@@ -330,7 +333,7 @@
                             <th class="p-3">الموعد المطلوب</th>
                             <th class="p-3">رقم الشباك</th>
                             <th class="p-3">الحالة الحالية</th>
-                            <th class="p-3 text-center">قرار الصراف وإرسال الرد للعميل</th>
+                            <th class="p-3 text-center">قرار الصراف وتحديث الحالة</th>
                         </tr>
                     </thead>
                     <tbody id="teller-queue-tbody" class="divide-y divide-slate-100"></tbody>
@@ -379,7 +382,23 @@
             { code: 'CHF', name: 'فرنك سويسري', buy: 63.95, sell: 64.65, status: 'stable' }
         ];
 
-        let bookingsList = [];
+        // جلب الحجوزات من التخزين المحلي لضمان المزامنة الفورية
+        function getBookings() {
+            try {
+                const data = localStorage.getItem('bm_samalut_bookings');
+                return data ? JSON.parse(data) : [];
+            } catch(e) {
+                return [];
+            }
+        }
+
+        function saveBookings(bookings) {
+            try {
+                localStorage.setItem('bm_samalut_bookings', JSON.stringify(bookings));
+                updateTellerBadge();
+            } catch(e){}
+        }
+
         let calcType = 'buy';
         document.getElementById('book-date').value = new Date().toISOString().split('T')[0];
 
@@ -398,7 +417,10 @@
             document.getElementById('btn-' + tab).classList.add('active');
 
             if (tab === 'rates') renderRatesTable();
-            if (tab === 'teller') renderTellerDashboard();
+            if (tab === 'teller') {
+                renderTellerDashboard();
+                clearNotificationBadge();
+            }
         }
 
         function handleAuthLogin(e) {
@@ -472,44 +494,46 @@
                 id: 'BM-' + Math.floor(1000 + Math.random() * 9000),
                 name, phone, date, time,
                 status: 'قيد المراجعة',
-                window: 'شباك رقم 1'
+                window: 'شباك رقم 1',
+                timestamp: Date.now()
             };
 
-            bookingsList.push(newBooking);
+            let bookings = getBookings();
+            bookings.unshift(newBooking);
+            saveBookings(bookings);
 
             document.getElementById('ticket-display-card').innerHTML = `
                 <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center text-3xl mb-4 border border-emerald-200">
                     <i class="fa-solid fa-check"></i>
                 </div>
-                <h4 class="font-black text-lg text-slate-900">تم إرسال طلب الحجز بنجاح!</h4>
+                <h4 class="font-black text-lg text-slate-900">تم إرسال طلبك للفرع بنجاح!</h4>
                 <p class="text-xs text-slate-600 mt-2">رقم الحجز: <span class="text-[#0B192C] font-black">${newBooking.id}</span></p>
-                <p class="text-xs text-slate-500 mt-1">بانتظار مراجعة الصراف وإرسال تأكيد الموعد عبر الواتساب أو SMS.</p>
+                <p class="text-xs text-emerald-700 font-bold mt-1">حالة التذكرة الآن: قيد المراجعة من الصراف</p>
             `;
-
-            const msg = `[المصرية للصرافة]\nمرحباً ${name}، تم استلام طلب حجز موعدك بفرع سمالوط. رقم الحجز: ${newBooking.id} بتاريخ ${date} الساعة ${time}. للتواصل: 086-3446509 أو 086-3446519`;
-            window.open(`https://wa.me/2${phone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
         function renderTellerDashboard() {
             const tbody = document.getElementById('teller-queue-tbody');
             if(!tbody) return;
+            const bookings = getBookings();
             tbody.innerHTML = '';
-            if(bookingsList.length === 0) {
+            if(bookings.length === 0) {
                 tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-500 font-bold">لا توجد حجوزات جديدة حتى الآن.</td></tr>`;
                 return;
             }
-            bookingsList.forEach((b, idx) => {
+            bookings.forEach((b, idx) => {
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-slate-100";
+                const statusColor = b.status === 'مقبول' ? 'bg-emerald-100 text-emerald-800 border-emerald-200' : (b.status === 'مرفوض' ? 'bg-rose-100 text-rose-800 border-rose-200' : 'bg-amber-100 text-amber-800 border-amber-200');
                 tr.innerHTML = `
                     <td class="p-3 font-black text-[#0B192C]">${b.id}</td>
                     <td class="p-3 font-bold text-slate-900">${b.name}</td>
                     <td class="p-3 font-bold text-slate-600" dir="ltr">${b.phone}</td>
                     <td class="p-3 text-slate-700">${b.date} <br><span class="text-[11px] text-amber-600 font-bold">${b.time}</span></td>
                     <td class="p-3"><input type="text" id="win-${idx}" value="${b.window}" class="w-24 bg-slate-50 border border-slate-300 p-1.5 rounded text-center text-slate-900 text-xs font-bold" /></td>
-                    <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200">${b.status}</span></td>
+                    <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-black ${statusColor}">${b.status}</span></td>
                     <td class="p-3 text-center space-x-1 space-x-reverse">
-                        <button onclick="updateBookingStatus(${idx}, 'مقبول')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">قبول وتأكيد</button>
+                        <button onclick="updateBookingStatus(${idx}, 'مقبول')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">قبول</button>
                         <button onclick="updateBookingStatus(${idx}, 'مرفوض')" class="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm">رفض</button>
                     </td>
                 `;
@@ -518,25 +542,47 @@
         }
 
         function updateBookingStatus(idx, status) {
+            let bookings = getBookings();
             const winVal = document.getElementById(`win-${idx}`).value;
-            bookingsList[idx].status = status;
-            bookingsList[idx].window = winVal;
-            renderTellerDashboard();
-
-            const b = bookingsList[idx];
-            let msg = "";
-            if(status === 'مقبول') {
-                msg = `[المصرية للصرافة]\nعزيزي العميل ${b.name}، تم قبول حجزك (رقم: ${b.id}) بفرع سمالوط. ننتظرك في الموعد (${b.time}) على (${winVal}). للاستفسار: 086-3446509 أو 086-3446519`;
-            } else {
-                msg = `[المصرية للصرافة]\nعزيزي العميل ${b.name}، نعتذر عن قبول حجزك (رقم: ${b.id}) بفرع سمالوط حالياً. يرجى إعادة الحجز في موعد آخر أو الاتصال بنا على: 086-3446509 أو 086-3446519`;
+            if(bookings[idx]) {
+                bookings[idx].status = status;
+                bookings[idx].window = winVal;
+                saveBookings(bookings);
+                renderTellerDashboard();
+                alert(`تم تحديث حالة الحجز (${bookings[idx].id}) إلى (${status}) والشباك (${winVal}) بنجاح!`);
             }
-
-2 استخدام الرابط لتوجيه الواتساب
-            window.open(`https://wa.me/2${b.phone}?text=${encodeURIComponent(msg)}`, '_blank');
-            alert(`تم تحديث حالة الطلب إلى (${status}) وتم فتح رسالة الواتساب/SMS باسم "المصرية للصرافة" لإرسالها للعميل.`);
         }
 
+        function updateTellerBadge() {
+            const bookings = getBookings();
+            const pendingCount = bookings.filter(b => b.status === 'قيد المراجعة').length;
+            const badge = document.getElementById('teller-badge-count');
+            if(!badge) return;
+            if(pendingCount > 0) {
+                badge.textContent = pendingCount;
+                badge.classList.remove('hidden');
+                badge.classList.add('flex');
+            } else {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+            }
+        }
+
+        function clearNotificationBadge() {
+            const badge = document.getElementById('teller-badge-count');
+            if(badge) {
+                badge.classList.add('hidden');
+                badge.classList.remove('flex');
+            }
+        }
+
+        function checkBookingsSync() {
+            updateTellerBadge();
+        }
+
+        setInterval(updateTellerBadge, 2000);
         renderRatesTable();
+        updateTellerBadge();
     </script>
 </body>
 </html>
